@@ -1,9 +1,10 @@
-const chalk = require('chalk');
-const path = require('path');
-const webpack = require('webpack');
-const appRootDir = require('app-root-dir');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const AssetsPlugin = require('assets-webpack-plugin');
+const path = require('path')
+const { path: appRoot } = require('app-root-path')
+const webpack = require('webpack')
+const HtmlWebPackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 function removeEmpty (x) {
   return x.filter(y => y != null);
@@ -16,156 +17,74 @@ function ifElse (condition) {
   }
 }
 
-function configFactory() {
-  const isDev = process.env.NODE_ENV === 'development';
-  const isProd = process.env.NODE_ENV === 'production';
+function configFactory(env, argv) {
+  const isDev = argv.mode === 'development';
+  const isProd = argv.mode === 'production';
 
   const ifDev = ifElse(isDev);
   const ifProd = ifElse(isProd);
 
-  const mode = ifDev('development', 'production');
-
-  console.log(chalk.blue(`==> Creating webpack config in ${mode} mode.`));
-
   let webpackConfig = {
-    target: 'web',
-
-    devtool: isProd ? 'hidden-source-map' : 'source-map',
-
-    performance: isProd ? { hints: 'warning' } : false,
-
-    node: {
-      __dirname: true,
-      __filename: true,
-    },
-
     entry: {
       home: removeEmpty([
-        ifDev('webpack-hot-middleware/client'),
-        path.resolve(appRootDir.get(), './public/js/home')
+        ifDev('webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000'),
+        path.resolve(appRoot, './public/js/home'),
       ]),
       about: removeEmpty([
-        ifDev('webpack-hot-middleware/client'),
-        path.resolve(appRootDir.get(), './public/js/about')
+        ifDev('webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000'),
+        path.resolve(appRoot, './public/js/about'),
       ]),
     },
 
     output: {
-      path: path.resolve(appRootDir.get(), './build/'),
-      filename: ifProd('[name]-[chunkhash].js', '[name].js'),
-      chunkFilename: '[name]-[chunkhash].js',
+      path: path.join(appRoot, './dist'),
+      filename: '[name].js',
       publicPath: ifDev('http://localhost:3000/build/', '/'),
     },
 
-    plugins: removeEmpty([
-      new webpack.EnvironmentPlugin({
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-        ENABLE_TUNNEL: JSON.stringify(process.env.ENABLE_TUNNEL) || 'false',
-      }),
+    target: 'web',
 
-      new AssetsPlugin({
-        filename: 'assets.json',
-        path: path.resolve(appRootDir.get(), './build'),
-      }),
+    devtool: isProd ? 'hidden-source-map' : 'source-map',
 
-      new webpack.optimize.ModuleConcatenationPlugin(),
+    mode: argv.mode,
 
-      ifDev(() => new webpack.NoEmitOnErrorsPlugin()),
-
-      ifDev(() => new webpack.HotModuleReplacementPlugin()),
-
-      ifDev(() => new webpack.NamedModulesPlugin()),
-
-      ifProd(() =>
-        new webpack.optimize.UglifyJsPlugin({
-          sourceMap: true,
-          compress: {
-            screw_ie8: true,
-            warnings: false,
-          },
-          mangle: {
-            screw_ie8: true,
-          },
-          output: {
-            comments: false,
-            screw_ie8: true,
-          },
-        })
-      ),
-
-      ifProd(() =>
-        new ExtractTextPlugin({
-          filename: '[name]-[chunkhash].css',
-          allChunks: true,
-        })
-      ),
-    ]),
-
-    resolve: {
-      extensions: ['.js'],
-      modules: ['node_modules'],
+    optimization: {
+      minimizer: removeEmpty([
+        ifProd(() =>
+          new UglifyJsPlugin({
+            cache: true,
+            parallel: true,
+            sourceMap: true,
+          })
+        ),
+        ifProd(() => new OptimizeCSSAssetsPlugin({})),
+      ])
     },
 
     module: {
       rules: [
-        // Javascript Loader
         {
           test: /\.js$/,
-          exclude: '/node_modules/',
-          use: [
-            'cache-loader',
-            {
-              loader: 'babel-loader',
-              options: {
-                babelrc: false,
-                presets: [
-                  'stage-3',
-                  ['latest', { es2015: { modules: false } }],
-                ]
-              }
-            }
-          ],
+          exclude: /node_modules/,
+          use: ['cache-loader', 'babel-loader']
         },
-        // CSS/SCSS Loader
         {
-          test: /\.css$/,
+          test: /\.html$/,
+          use: [
+            {
+              loader: 'html-loader',
+              options: { minimize: isProd },
+            }
+          ]
+        },
+        {
+          test: /\.css/,
           exclude: /node_modules/,
           rules: removeEmpty([
             ifProd({
-              loader: ExtractTextPlugin.extract({
-                use: [
-                  {
-                    loader: 'css-loader',
-                    options: {
-                      importLoaders: 1,
-                    },
-                  },
-                  {
-                    loader: 'postcss-loader',
-                    options: {
-                      config: {
-                        path: './webpack/postcss.config.js',
-                      }
-                    },
-                  },
-                  {
-                    loader: 'sass-loader',
-                  },
-                ],
-                fallback: 'style-loader',
-              })
-            }),
-            ifDev({
               use: [
-                'cache-loader',
-                'style-loader',
-                {
-                  loader: 'css-loader',
-                  options: {
-                    importLoaders: 1,
-                    sourceMap: true,
-                  },
-                },
+                MiniCssExtractPlugin.loader,
+                'css-loader',
                 {
                   loader: 'postcss-loader',
                   options: {
@@ -175,30 +94,78 @@ function configFactory() {
                     }
                   },
                 },
+                'sass-loader',
+              ]
+            }),
+            ifDev({
+              use: [
+                'cache-loader',
+                'style-loader',
+                {
+                  loader: 'css-loader',
+                  options: {
+                    importLoaders: 1,
+                    sourceMap: true
+                  },
+                },
+                {
+                  loader: 'postcss-loader',
+                  options: {
+                    sourceMap: true,
+                    config: {
+                      path: './webpack/postcss.config.js',
+                    },
+                  },
+                },
                 {
                   loader: 'sass-loader',
                   options: {
                     sourceMap: true,
+                    includePaths: [path.join(appRoot, './public')],
                   },
                 },
               ]
-            }),
-          ]),
+            })
+          ])
         },
-        // Special File type Loader
         {
-          test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
-          loader: 'file-loader',
-          query: {
-            name: ifDev('[path][name].[ext]?[hash:8]', '[hash:8].[ext]'),
-          },
+         test: /\.(png|svg|jpg|jpeg|gif)$/,
+         loader: 'file-loader',
         },
-      ],
-    }
+      ]
+    },
+
+    plugins: removeEmpty([
+      new HtmlWebPackPlugin({
+        template: path.resolve(appRoot, './views/home.html'),
+        filename: './home.html',
+        excludeChunks: ['server'],
+        chunks: ['home'],
+      }),
+
+      new HtmlWebPackPlugin({
+        template: path.resolve(appRoot, './views/about.html'),
+        filename: './about.html',
+        excludeChunks: ['server'],
+        chunks: ['about'],
+      }),
+
+      ifDev(() => new webpack.NoEmitOnErrorsPlugin()),
+
+      ifDev(() => new webpack.HotModuleReplacementPlugin()),
+
+      ifDev(() => new webpack.NamedModulesPlugin()),
+
+      ifProd(() =>
+        new MiniCssExtractPlugin({
+          filename: '[name].css',
+          chunkFilename: '[id].css',
+        })
+      )
+    ])
   }
 
-  return webpackConfig;
+  return webpackConfig
 }
 
-module.exports = configFactory();
-
+module.exports = configFactory

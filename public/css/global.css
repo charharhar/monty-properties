@@ -1,6 +1,4 @@
-@import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css);
-
-$font-stack: "Arial", sans-serif;
+$font-stack: "Lato", sans-serif;
 $main-white: #ffffff;
 $main-black: #222;
 
@@ -44,24 +42,6 @@ html, body {
   width: 100%;
 }
 
-.flex-display {
-  display: flex;
-
-  &.position-center {
-    align-items: center;
-    justify-content: center;
-  }
-
-  &.space-around {
-    align-items: center;
-    justify-content: space-around;
-  }
-
-  &.direction-column {
-    flex-direction: column;
-  }
-}
-
 span.br {
   content: ' ';
   display: block;
@@ -85,24 +65,6 @@ span.br-mobile {
   }
 }
 
-@media (min-width: 768px) {
-  .row-eq-height.sm-fix {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display:         flex;
-  }
-}
-
-@media (min-width: 992px) {
-  .row-eq-height.md-fix {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display:         flex;
-  }
-}
-
 /**
  * Text styles
  */
@@ -110,7 +72,6 @@ span.br-mobile {
 h1 {
   text-transform: uppercase;
   letter-spacing: 1px;
-  transition: .2s all;
 }
 
 h2 {
@@ -126,8 +87,6 @@ h3 {
 p {
   font-size: 14px;
   letter-spacing: 1px;
-  font-weight: 300;
-  line-height: 150%;
 }
 
 /**
@@ -158,6 +117,7 @@ a.button {
 figure {
   img {
     width: 100%;
+    vertical-align: bottom;
   }
 }
 

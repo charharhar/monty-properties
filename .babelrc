@@ -1,6 +1,3 @@
 {
-  "presets": [
-    ["env", { "targets": { "node": true } }],
-    "stage-3",
-  ]
+  "presets": ["@babel/preset-env"]
 }

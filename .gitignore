@@ -3,6 +3,7 @@
 
 # Build output directories
 /build/
+/dist/
 
 # Cached loader directory
 .cache-loader

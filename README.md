@@ -1,4 +1,4 @@
-<h1 align="center">Express Web Application</h1>
+<h1 align="center">Express Webpack Boilerplate</h1>
 <p align="center">Bare minimum, production ready express web application.</p>
 
 ## About
@@ -6,27 +6,27 @@ A very productive, hot reloading development environment that is production read
 
 ## Features
 <dl>
-  <dt>Webpack</dt>
+  <dt>Webpack 4</dt>
   <dd>Utilizes webpack as the primary bundler for optimizing the front end assets.</dd>
 
-  <dt>SCSS/SASS support</dt>
+  <dt>SCSS/SASS preprocessor</dt>
   <dd>Allows SCSS syntax goodies and autoprefixing with postcss configurations.</dd>
 
   <dt>Hot reloading development environment</dt>
   <dd>Implements webpack hot middleware in the development node server to take advantage of hot reloading of assets in the client.</dd>
   
   <dt>Simple express server</dt>
-  <dd>Sets up a simple express server that follows a VC structure, with controllers serving the proper views using EJS templating engine to include their corresponding assets.</dd>
+  <dd>Sets up a simple express server to serve all the corresponding assets with their respective views.</dd>
 
   <dt>SEO support</dt>
-  <dd>Strong support of SEO meta tag management to be indexed by google's search engine.</dd>
+  <dd>Basic SEO meta tag management to be indexed by google's search engine.</dd>
 
   <dt>Custom Demo environment</dt>
   <dd>Utilizes ngrok to set up a secure public URL for convenient demoing purposes.</dd>
 </dl>
 
 ## Notes
-  - Bootstrap and jQuery libraries are currently included using a CDN. Primary reasoning for bootstrap is to include a familiar responsive grid system. Jquery is included in the event that other libraries/packages are dependent; some cross-browser methods/functions are also useful (ex: anchor smooth scrolling to ID).
+  - jQuery library is currently included using a CDN. It is included in the event that other libraries/packages are dependent; some cross-browser methods/functions are also useful (ex: anchor smooth scrolling to ID).
 
 ## Additional
   - Get proper favicon support using http://www.favicon-generator.org/
