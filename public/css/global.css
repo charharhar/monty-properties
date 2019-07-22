@@ -1,5 +1,5 @@
 $font-stack: "Lato", sans-serif;
-$main-white: #ffffff;
+$main-white: #fff;
 $main-black: #222;
 
 *, *:before, *:after {
@@ -32,10 +32,6 @@ html, body {
   font-weight: 400;
   color: $main-black;
   overflow-x: hidden;
-
-  &.is-active {
-    overflow: hidden;
-  }
 }
 
 .wrapper {
@@ -80,7 +76,6 @@ h2 {
 }
 
 h3 {
-  text-transform: uppercase;
   letter-spacing: 1px;
 }
 

@@ -44,7 +44,7 @@ function configFactory(env, argv) {
 
     target: 'web',
 
-    devtool: isProd ? 'hidden-source-map' : 'source-map',
+    devtool: isProd ? 'none' : 'cheap-eval-source-map',
 
     mode: argv.mode,
 
