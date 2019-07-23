@@ -1,10 +1,1 @@
 @import 'global';
-
-.home-heading {
-  color: limegreen;
-}
-
-img {
-  width: 400px;
-  transform: translateX(100px);
-}
