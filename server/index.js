@@ -45,7 +45,6 @@ app.get('*', (req, res, next) => {
   const filename = path.join(compiler.outputPath, `${url}.html`);
 
   compiler.outputFileSystem.readFile(filename, (err, result) => {
-    console.log(err)
     if (err) {
       return next(err)
     }

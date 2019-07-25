@@ -2,6 +2,7 @@ const path = require('path')
 const { path: appRoot } = require('app-root-path')
 const webpack = require('webpack')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
+const WebpackNotifierPlugin = require('webpack-notifier');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -129,8 +130,30 @@ function configFactory(env, argv) {
           ])
         },
         {
-         test: /\.(png|svg|jpg|jpeg|gif)$/,
-         loader: 'file-loader',
+          test: /\.(png|svg|jpe?g|gif)$/,
+          use: [
+            'file-loader',
+            {
+              loader: 'image-webpack-loader',
+              options: {
+                mozjpeg: {
+                  progressive: true,
+                  enabled: true,
+                  quality: 65,
+                },
+                gifsicle: {
+                  interlaced: false,
+                },
+                optipng: {
+                  optimizationLevel: 7,
+                },
+                pngquant: {
+                  quality: '65-90',
+                  speed: 4,
+                },
+              },
+            },
+          ]
         },
       ]
     },
@@ -149,6 +172,8 @@ function configFactory(env, argv) {
         excludeChunks: ['server'],
         chunks: ['about'],
       }),
+
+      ifDev(() => new WebpackNotifierPlugin({ alwaysNotify: true })),
 
       ifDev(() => new webpack.NoEmitOnErrorsPlugin()),
 
