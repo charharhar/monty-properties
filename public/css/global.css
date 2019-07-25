@@ -354,8 +354,6 @@ figure {
     border: 2px solid #fff;
 
     .chevron {
-      position: absolute;
-      display: inline-block;
       border-right: 2px solid #fff;
       border-bottom: 2px solid #fff;
       width: 10px;
@@ -568,7 +566,6 @@ figure {
           border: 2px solid transparent;
 
           .chevron {
-            display: inline-block;
             border-right: 2px solid #fff;
             border-bottom: 2px solid #fff;
             width: 10px;
