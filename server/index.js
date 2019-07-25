@@ -40,10 +40,12 @@ if (isDev) {
 /**
  * Primary app routes.
  */
-app.get('*', (req, res) => {
+app.get('*', (req, res, next) => {
   const url = req.url === '/' ? '/home' : req.url
+  const filename = path.join(compiler.outputPath, `${url}.html`);
 
-  compiler.outputFileSystem.readFile(path.resolve(__dirname, `.${url}.html`), (err, result) => {
+  compiler.outputFileSystem.readFile(filename, (err, result) => {
+    console.log(err)
     if (err) {
       return next(err)
     }
