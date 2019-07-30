@@ -118,6 +118,7 @@ a.button {
  */
 
 figure {
+  width: 100%;
   img {
     width: 100%;
     vertical-align: bottom;
@@ -408,6 +409,22 @@ figure {
             display: block;
             width: 100%;
             padding-top: calc(561 / 805 * 100%);
+          }
+
+          figure.aspect-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+          }
+
+          div.monty-map {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
           }
         }
 
