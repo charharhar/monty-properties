@@ -1,4 +1,5 @@
 const path = require('path')
+const fs = require('fs');
 const { path: appRoot } = require('app-root-path')
 const webpack = require('webpack')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
@@ -16,6 +17,27 @@ function ifElse (condition) {
     const execIfFunc = x => (typeof x === 'function' ? x() : x);
     return condition ? execIfFunc(then) : (or);
   }
+}
+
+function getHtmlWebPackViews() {
+  const htmlWebPackViews = [];
+  const viewsDir = path.resolve(appRoot, './views')
+  const files = fs.readdirSync(viewsDir);
+
+  files.forEach(fileName => {
+    const fileChunk = fileName.split('.')[0];
+
+    htmlWebPackViews.push(
+      new HtmlWebPackPlugin({
+        filename: fileName,
+        template: path.resolve(viewsDir, fileName),
+        excludeChunks: ['server'],
+        chunks: [fileChunk],
+      })
+    )
+  })
+
+  return htmlWebPackViews;
 }
 
 function configFactory(env, argv) {
@@ -159,19 +181,21 @@ function configFactory(env, argv) {
     },
 
     plugins: removeEmpty([
-      new HtmlWebPackPlugin({
-        template: path.resolve(appRoot, './views/home.html'),
-        filename: './home.html',
-        excludeChunks: ['server'],
-        chunks: ['home'],
-      }),
+      // new HtmlWebPackPlugin({
+      //   template: path.resolve(appRoot, './views/home.html'),
+      //   filename: './home.html',
+      //   excludeChunks: ['server'],
+      //   chunks: ['home'],
+      // }),
 
-      new HtmlWebPackPlugin({
-        template: path.resolve(appRoot, './views/about.html'),
-        filename: './about.html',
-        excludeChunks: ['server'],
-        chunks: ['about'],
-      }),
+      // new HtmlWebPackPlugin({
+      //   template: path.resolve(appRoot, './views/about.html'),
+      //   filename: './about.html',
+      //   excludeChunks: ['server'],
+      //   chunks: ['about'],
+      // }),
+
+      ...getHtmlWebPackViews(),
 
       ifDev(() => new WebpackNotifierPlugin({ alwaysNotify: true })),
 
