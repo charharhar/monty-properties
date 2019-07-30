@@ -181,20 +181,6 @@ function configFactory(env, argv) {
     },
 
     plugins: removeEmpty([
-      // new HtmlWebPackPlugin({
-      //   template: path.resolve(appRoot, './views/home.html'),
-      //   filename: './home.html',
-      //   excludeChunks: ['server'],
-      //   chunks: ['home'],
-      // }),
-
-      // new HtmlWebPackPlugin({
-      //   template: path.resolve(appRoot, './views/about.html'),
-      //   filename: './about.html',
-      //   excludeChunks: ['server'],
-      //   chunks: ['about'],
-      // }),
-
       ...getHtmlWebPackViews(),
 
       ifDev(() => new WebpackNotifierPlugin({ alwaysNotify: true })),

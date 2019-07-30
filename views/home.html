@@ -33,6 +33,23 @@
 
     <div class="wrapper">
         <header class="section-header section-landing aspect-5625">
+            <div class="mobile-nav-list">
+                <ul>
+                    <li>
+                        <a class="navLink" href="/about">About Us</a>
+                    </li>
+                    <li>
+                        <a class="navLink" href="/philosophy">Investment Philosophy</a>
+                    </li>
+                    <li>
+                        <a class="navLink" href="/projects">Projects</a>
+                    </li>
+                    <li>
+                        <a class="navLink" href="/contact">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+
             <nav class="main-navigation">
                 <div class="navigation-logo-wrapper">
                     <a href="/">
@@ -58,6 +75,12 @@
                         </li>
                     </ul>
                 </div>
+
+                <button class="hamburger hamburger--elastic">
+                    <span class="hamburger-box">
+                        <span class="hamburger-inner"></span>
+                    </span>
+                </button>
             </nav>
 
             <div class="hero-content">
@@ -71,12 +94,14 @@
                 </a>
             </div>
 
-            <div class="sideways-scrollhint">
-                <span class="monty-link-chevron">
-                    <span class="chevron left"></span>
-                </span>
+            <div class="sideways-scrollhint" id="header-sideways">
+                <div class="scrollhint-content">
+                    <span class="monty-link-chevron">
+                        <span class="chevron left"></span>
+                    </span>
 
-                <p>scroll down</p>
+                    <p>scroll down</p>
+                </div>
             </div>
 
             <div class="aspect-hero">
@@ -175,13 +200,20 @@
 
         <footer class="section-footer">
             <div class="section-content">
-                <ul class="footer-nav">
-                    <li><a href="/about" class="navLink">About Us</a></li>
-                    <li><a href="/philosophy" class="navLink">Investment Philosophy</a></li>
-                    <li><a href="/projects" class="navLink">Projects</a></li>
-                    <li><a href="/contact" class="navLink">Contact Us</a></li>
-                    <li><a href="/" class="navLink">Monty</li>
-                </ul>
+                <div class="footer-left">
+                    <a href="" class="footer-social" id="linkedin"><img src="/images/linkedin-logo.png" alt=""></a>
+                    <p>2019 copyright Monty Group Limited</p>
+                </div>
+
+                <div class="footer-right">
+                    <ul class="footer-nav">
+                        <li><a href="/about" class="navLink">About Us</a></li>
+                        <li><a href="/philosophy" class="navLink">Investment Philosophy</a></li>
+                        <li><a href="/projects" class="navLink">Projects</a></li>
+                        <li><a href="/contact" class="navLink">Contact Us</a></li>
+                        <li><a href="/" class="navLink"><img src="/images/monty-logo-blue.svg" class="footer-logo" alt="Monty Properties"></a></li>
+                    </ul>
+                </div>
             </div>
         </footer>
     </div>

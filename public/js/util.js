@@ -27,6 +27,22 @@ export function sliceArray(nodeArray) {
   return Array.prototype.slice.call(nodeArray)
 }
 
+export function mobileNavHandler(toggle, mobileNav) {
+
+  toggle.addEventListener('click', function(e) {
+    e.preventDefault();
+
+    if (this.classList.contains('mobile-active') === true) {
+      this.classList.remove('mobile-active')
+      mobileNav.classList.remove('mobile-active')
+    } else {
+      this.classList.add('mobile-active');
+      mobileNav.classList.add('mobile-active');
+    }
+
+  });
+}
+
 export function getDistanceFromLeft(el) {
   const rect = el.getBoundingClientRect();
   const docEl = document.documentElement;
