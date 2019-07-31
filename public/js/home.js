@@ -1,5 +1,8 @@
 
 import '../css/home.css';
+import 'animation.gsap';
+import { TweenMax } from "gsap/TweenMax";
+import ScrollMagic from 'scrollmagic';
 import {
   hotReload,
   mobileNavHandler

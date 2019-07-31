@@ -62,6 +62,7 @@ function configFactory(env, argv) {
     output: {
       path: path.join(appRoot, './dist'),
       filename: '[name].js',
+      chunkFilename: '[name].js',
       publicPath: ifDev('http://localhost:3000/build/', '/'),
     },
 
@@ -81,7 +82,19 @@ function configFactory(env, argv) {
           })
         ),
         ifProd(() => new OptimizeCSSAssetsPlugin({})),
-      ])
+      ]),
+    },
+
+    resolve: {
+      extensions: ['.js'],
+      modules: ['node_modules'],
+      alias: {
+        "TweenMax": path.resolve('node_modules', 'gsap/src/uncompressed/TweenMax.js'),
+        "TimelineMax": path.resolve('node_modules', 'gsap/src/uncompressed/TimelineMax.js'),
+        "ScrollMagic": path.resolve('node_modules', 'scrollmagic/scrollmagic/uncompressed/ScrollMagic.js'),
+        "animation.gsap": path.resolve('node_modules', 'scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap.js'),
+        "debug.addIndicators": path.resolve('node_modules', 'scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators.js')
+      }
     },
 
     module: {
