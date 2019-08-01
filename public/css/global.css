@@ -604,35 +604,6 @@ img {
 
         &.content-media {
           overflow: hidden;
-
-          &:after {
-            content: '';
-            position: absolute;
-            display: block;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            background-color: rgba($monty-lightblue, 1);
-            transform: translateX(-101%);
-            transition: 1300ms all ease;
-          }
-
-          .media {
-            opacity: 0;
-            transition: 1000ms all ease;
-          }
-
-          &.show {
-            &:after {
-              transform: translateX(101%);
-            }
-
-            .media {
-              opacity: 1;
-            }
-          }
         }
 
         &.aspect-ratio-box {
@@ -665,6 +636,43 @@ img {
 
         & > *:not(:last-child) {
           margin-bottom: 20px;
+        }
+      }
+    }
+
+    div.media-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      &:after {
+        content: '';
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        background-color: rgba($monty-lightblue, 1);
+        transform: translateX(-101%);
+        transition: 1300ms all ease;
+      }
+
+      .media {
+        opacity: 0;
+        transition: 1000ms all ease;
+      }
+
+      &.show {
+        &:after {
+          transform: translateX(101%);
+        }
+
+        .media {
+          opacity: 1;
         }
       }
     }

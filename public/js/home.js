@@ -41,18 +41,21 @@ const sceneClassToggleGenerator = (trigger, target, classToggle, controller) => 
 
 const homeController = new ScrollMagic.Controller();
 
-const textAA = sceneClassToggleGenerator('.home-section-one', '#textAA', 'show', homeController)
-const textAB = sceneClassToggleGenerator('.home-section-one', '#textAB', 'show', homeController)
-const textAC = sceneClassToggleGenerator('.home-section-one', '#textAC', 'show', homeController)
+const textA1 = sceneClassToggleGenerator('.home-section-one', '#textA1', 'show', homeController)
+const textA2 = sceneClassToggleGenerator('.home-section-one', '#textA2', 'show', homeController)
+const textA3 = sceneClassToggleGenerator('.home-section-one', '#textA3', 'show', homeController)
 
-const sceneAA = sceneClassToggleGenerator('.home-section-two', '#home-media-two', 'show', homeController)
-const sceneAB = sceneClassToggleGenerator('.home-section-two', '#home-text-two', 'show', homeController)
+const mediaB1 = sceneClassToggleGenerator('.home-section-two', '#mediaB1', 'show', homeController)
+const textB2 = sceneClassToggleGenerator('.home-section-two', '#textB2', 'show', homeController)
+const textB3 = sceneClassToggleGenerator('.home-section-two', '#textB3', 'show', homeController)
 
-const sceneBA = sceneClassToggleGenerator('.home-section-three', '#home-media-three', 'show', homeController)
-const sceneBB = sceneClassToggleGenerator('.home-section-three', '#home-text-three', 'show', homeController)
+const mediaC1 = sceneClassToggleGenerator('.home-section-three', '#mediaC1', 'show', homeController)
+const textC2 = sceneClassToggleGenerator('.home-section-three', '#textC2', 'show', homeController)
+const textC3 = sceneClassToggleGenerator('.home-section-three', '#textC3', 'show', homeController)
 
-const sceneCA = sceneClassToggleGenerator('.home-section-four', '#home-media-four', 'show', homeController)
-const sceneCB = sceneClassToggleGenerator('.home-section-four', '#home-text-four', 'show', homeController)
+const mediaD1 = sceneClassToggleGenerator('.home-section-four', '#mediaD1', 'show', homeController)
+const textD2 = sceneClassToggleGenerator('.home-section-four', '#textD2', 'show', homeController)
+const textD3 = sceneClassToggleGenerator('.home-section-four', '#textD3', 'show', homeController)
 
 /**
  * Google maps handler
