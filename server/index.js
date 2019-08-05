@@ -1,3 +1,4 @@
+import url from 'url'
 import path from 'path'
 import express from 'express'
 import chalk from 'chalk'
@@ -41,17 +42,20 @@ if (isDev) {
  * Primary app routes.
  */
 app.get('*', (req, res, next) => {
-  const url = req.url === '/' ? '/home' : req.url
-  const filename = path.join(compiler.outputPath, `${url}.html`);
+  const pathname = url.parse(req.url).pathname === '/' ? '/home' : req.url
+  const filename = path.join(compiler.outputPath, `${pathname}.html`);
 
-  compiler.outputFileSystem.readFile(filename, (err, result) => {
-    if (err) {
-      return next(err)
-    }
-    res.set('content-type', 'text/html')
-    res.send(result)
-    res.end()
-  })
+  if (pathname !== '/favicon.ico') {
+    compiler.outputFileSystem.readFile(filename, (err, result) => {
+      if (err) {
+        return next(err)
+      }
+      res.set('content-type', 'text/html')
+      res.send(result)
+      res.end()
+    })
+  }
+
 });
 
 /**
