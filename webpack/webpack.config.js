@@ -25,19 +25,36 @@ function getHtmlWebPackViews() {
   const files = fs.readdirSync(viewsDir);
 
   files.forEach(fileName => {
-    const fileChunk = fileName.split('.')[0];
+    const fileNoExt = fileName.split('.')[0];
 
     htmlWebPackViews.push(
       new HtmlWebPackPlugin({
         filename: fileName,
         template: path.resolve(viewsDir, fileName),
         excludeChunks: ['server'],
-        chunks: [fileChunk],
+        chunks: [fileNoExt],
       })
     )
   })
 
   return htmlWebPackViews;
+}
+
+function getEntryScripts(ifDev) {
+  const entryScripts = {};
+  const scriptsDir = path.resolve(appRoot, './public/js');
+  const files = fs.readdirSync(scriptsDir);
+
+  files.forEach(fileName => {
+    const fileNoExt = fileName.split('.')[0];
+
+    entryScripts[fileNoExt] = removeEmpty([
+      ifDev('webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000'),
+      path.resolve(appRoot, scriptsDir, fileNoExt),
+    ])
+  })
+
+  return entryScripts;
 }
 
 function configFactory(env, argv) {
@@ -48,21 +65,12 @@ function configFactory(env, argv) {
   const ifProd = ifElse(isProd);
 
   let webpackConfig = {
-    entry: {
-      home: removeEmpty([
-        ifDev('webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000'),
-        path.resolve(appRoot, './public/js/home'),
-      ]),
-      about: removeEmpty([
-        ifDev('webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000'),
-        path.resolve(appRoot, './public/js/about'),
-      ]),
-    },
+    entry: getEntryScripts(ifDev),
 
     output: {
       path: path.join(appRoot, './dist'),
-      filename: '[name].js',
-      chunkFilename: '[name].js',
+      filename: 'js/[name].js',
+      chunkFilename: 'js/[name].js',
       publicPath: ifDev('http://localhost:3000/build/', '/'),
     },
 
@@ -206,7 +214,7 @@ function configFactory(env, argv) {
 
       ifProd(() =>
         new MiniCssExtractPlugin({
-          filename: '[name].css',
+          filename: 'css/[name].css',
           chunkFilename: '[id].css',
         })
       )

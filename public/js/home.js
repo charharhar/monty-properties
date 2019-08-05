@@ -6,7 +6,7 @@ import ScrollMagic from 'scrollmagic';
 import {
   hotReload,
   mobileNavHandler
-} from './util.js'
+} from '../helpers/util.js'
 
 /**
  * Moible Nav Handler

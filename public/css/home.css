@@ -12,12 +12,12 @@
         span.animate-2,
         figure.animate-2,
         figure.media-2:after {
-          transition-delay: 450ms;
+          transition-delay: 400ms;
         }
         span.animate-3,
         figure.animate-3,
         figure.media-3:after {
-          transition-delay: 900ms;
+          transition-delay: 800ms;
         }
       }
     }
