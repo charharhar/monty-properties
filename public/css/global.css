@@ -338,7 +338,6 @@ img {
   }
 
   .mobile-nav-list {
-
     &.mobile-active {
       display: block;
     }
@@ -500,14 +499,14 @@ img {
         background-color: $monty-blue;
       }
 
-      p { color: $monty-blue; }
+      span.monty-link-text { color: $monty-blue; }
       .monty-link-chevron, .chevron {
         border-color: $monty-blue;
       }
     }
 
 
-    p {
+    span.monty-link-text {
       font-size: 13px;
       color: $main-white;
       text-transform: uppercase;
@@ -678,6 +677,12 @@ img {
       }
     }
 
+    div.carousel-wrapper {
+      position: relative;
+      height: 100%;
+      width: 100%;
+    }
+
     div.media-content {
       position: absolute;
       top: 0;
@@ -695,6 +700,27 @@ img {
         height: 100%;
         z-index: 1;
         background-color: rgba($monty-lightblue, 1);
+      }
+
+      .monty-link-chevron {
+        position: absolute;
+        top: 50%;
+        right: 40px;
+        transform: translateY(-50%);
+        height: 100px;
+        width: 100px;
+        border-radius: 25px;
+        cursor: pointer;
+
+        &:hover {
+          transform: translateY(-50%) scale(1.1);
+        }
+
+        .chevron {
+          height: 40px;
+          width: 40px;
+          margin-left: -20px;
+        }
       }
     }
 
@@ -778,11 +804,8 @@ img {
 }
 
 @media (max-width: 575.98px) {
-
   .wrapper {
-
     .sideways-scrollhint {
-      padding-bottom: 15px;
       border-right: 2px solid $main-white;
 
       &#header-sideways {

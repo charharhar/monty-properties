@@ -41,11 +41,20 @@ const timelineMaster = {
       return textTween
     },
     tweenAnchor: function(text, chevron, underline) {
+      const tweenArray = []
       const textTween = TweenMax.fromTo(text, .5, { yPercent: 100 }, { yPercent: 0, ease: Power3.easeInOut })
       const chevronTween = TweenMax.fromTo(chevron, .5, { yPercent: 100 }, { yPercent: 0, ease: Power3.easeInOut })
-      const underlineTween = TweenMax.fromTo(underline, .5, { width: 0, transformOrigin: '50% 100%' }, { width: '100%' })
+      let underlineTween;
 
-      return [textTween, chevronTween, underlineTween]
+      tweenArray.push(textTween, chevronTween);
+
+      if (underline) {
+        underlineTween = TweenMax.fromTo(underline, .5, { width: 0, transformOrigin: '50% 100%' }, { width: '100%' })
+
+        tweenArray.push(underlineTween)
+      }
+
+      return tweenArray;
     },
     tweenMedia: function(overlay, media) {
       const overlayTween = TweenMax.fromTo(overlay, 1.3, { xPercent: -101 }, { xPercent: 101, ease: Power3.easeInOut });
@@ -169,12 +178,15 @@ const timelineMaster = {
         }
       } = timelineMaster;
 
-      const sidewaysTextTween = TweenMax.fromTo('#header-sideways .scrollhint-underline', .6, { height: 0 }, { height: '100%' })
+      const sidewaysTextTween = TweenMax.fromTo('#header-sideways .scrollhint-underline', 1, { height: 0 }, { height: '100%' })
       const heroLineTween = TweenMax.fromTo('.hero-content .hero-border', .6, { height: 0, transformOrigin: '0 0'  }, { height: '100%' })
       const heroTextTween = TweenMax.fromTo('.hero-content h1', 1, { xPercent: -100 }, { xPercent: 0 });
 
       timeline
         .add([heroLineTween, sidewaysTextTween], 'labelL')
+        .add(tweenAnchor(
+          '#header-sideways .monty-link-text',
+          '#header-sideways .monty-link-chevron'), 'labelL+=.4', 'sequence')
         .add(heroTextTween, 'labelL+=.4')
         .add(tweenAnchor(
           '#anchorL1 .monty-link-text',
@@ -183,7 +195,29 @@ const timelineMaster = {
 
       return timeline;
     }
-  }
+  },
+
+  timelineF: {
+    timeline: new TimelineMax(),
+    init: function() {
+      const { timeline } = this;
+      const {
+        helpers: {
+          tweenAnchor,
+        }
+      } = timelineMaster;
+
+      const sidewaysTextTween = TweenMax.fromTo('#footer-sideways .scrollhint-underline', 1, { height: 0 }, { height: '100%' })
+
+      timeline
+        .add(sidewaysTextTween, 'labelF')
+        .add(tweenAnchor(
+          '#footer-sideways .monty-link-text',
+          '#footer-sideways .monty-link-chevron'), 'labelF+=.4', 'sequence')
+
+      return timeline;
+    }
+  },
 }
 
 const homeController = new ScrollMagic.Controller({
@@ -213,6 +247,13 @@ function initMap(options) {
 }
 
 /**
+ * Carousel Handler
+ */
+
+const carousel = document.querySelector('#home-carousel');
+
+
+/**
  * Event Listeners
  */
 
@@ -227,6 +268,7 @@ window.onload = function() {
     new ScrollMagic.Scene({ triggerElement: '.home-section-three' }).setTween(timelineMaster.timelineC.init()),
     new ScrollMagic.Scene({ triggerElement: '.home-section-four' }).setTween(timelineMaster.timelineD.init()),
     new ScrollMagic.Scene({ triggerElement: '.home-section-header' }).setTween(timelineMaster.timelineL.init()),
+    new ScrollMagic.Scene({ triggerElement: '.home-section-four' }).setTween(timelineMaster.timelineF.init()),
   ])
 }
 
