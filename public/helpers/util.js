@@ -57,9 +57,7 @@ export function scrollTop() {
 export function scrollTo(e, elem) {
   e.preventDefault();
 
-  const target = `.${elem.getAttribute('scrollTo')}`
-
   $('html, body').animate({
-    scrollTop: $(target).offset().top
+    scrollTop: $(elem).offset().top
   }, 1000);
 }

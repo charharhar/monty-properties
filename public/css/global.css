@@ -1,7 +1,7 @@
 $font-stack: "Lato", sans-serif;
 $main-white: #fff;
 $main-black: #222;
-$monty-blue: #202957;
+$monty-blue: #202958;
 $monty-lightblue: #4558ba;
 
 *, *:before, *:after {
@@ -413,9 +413,18 @@ img {
       left: 85px;
       transform: translateY(-50%);
       padding-left: 25px;
-      border-left: 5px solid $main-white;
       max-width: 810px;
       min-height: 90px;
+      overflow: hidden;
+
+      span.hero-border {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 5px;
+        height: 100%;
+        background-color: $main-white;
+      }
 
       h1 {
         font-size: 26px;
@@ -437,9 +446,6 @@ img {
     position: absolute;
     display: flex;
     align-items: flex-end;
-    cursor: pointer;
-    padding-bottom: 15px;
-    border-right: 2px solid $main-white;
 
     &#header-sideways {
       bottom: 7%;
@@ -451,6 +457,12 @@ img {
       height: 300px;
     }
 
+    .scrollhint-underline {
+      height: 100%;
+      background-color: $main-white;
+      width: 2px;
+    }
+
     .scrollhint-content {
       display: flex;
       align-items: flex-end;
@@ -459,10 +471,34 @@ img {
       right: -40px;
       width: 161px;
       transform: rotate(-90deg);
+      overflow: hidden;
+      cursor: pointer;
+
+      &:hover {
+        .monty-link-chevron {
+          background-color: $main-white;
+
+          .chevron {
+            border-color: $monty-blue;
+          }
+        }
+      }
     }
 
     &.blue {
-      border-color: $monty-blue;
+      &:hover {
+        .monty-link-chevron {
+          background-color: $monty-blue;
+
+          .chevron {
+            border-color: $main-white;
+          }
+        }
+      }
+
+      .scrollhint-underline {
+        background-color: $monty-blue;
+      }
 
       p { color: $monty-blue; }
       .monty-link-chevron, .chevron {
@@ -486,22 +522,39 @@ img {
   }
 
   a.monty-link {
+    position: relative;
     display: flex;
     justify-content: space-between;
     font-size: 12px;
     width: 160px;
     margin: 20px 0 0;
+    overflow: hidden;
 
-    &:hover .monty-link-text:after {
-      width: 100%;
-      left: 0;
+    &:hover {
+      .monty-link-chevron {
+        background-color: $main-white;
+
+        .chevron {
+          border-color: $monty-blue;
+        }
+      }
     }
 
     &.blue {
+      &:hover {
+        .monty-link-chevron {
+          background-color: $main-white;
+
+          .chevron {
+            border-color: $monty-blue;
+          }
+        }
+      }
+
       .monty-link-text {
         color: #000;
 
-        &:after {
+        span.monty-link-underline {
           background-color: $monty-blue;
         }
       }
@@ -516,7 +569,7 @@ img {
       position: relative;
       color: #fff;
 
-      &:after{
+      span.monty-link-underline {
         content: '';
         position: absolute;
         width: 0;
@@ -524,9 +577,7 @@ img {
         display: block;
         background-color: #fff;
         bottom: 0;
-        right: 0;
-        transition: width 200ms ease;
-        -webkit-transition: width 200ms ease;
+        left: 0;
       }
     }
   }
@@ -541,6 +592,7 @@ img {
     width: 30px;
     border-radius: 6px;
     border: 2px solid #fff;
+    transition: 200ms all ease;
 
     .chevron {
       border-right: 2px solid #fff;
@@ -549,6 +601,7 @@ img {
       height: 10px;
       transform: rotate(-45deg);
       margin-left: -3px;
+      transition: 200ms all ease;
 
       &.left {
         transform: rotate(-225deg);
@@ -585,21 +638,6 @@ img {
 
         &.content-fill {
           flex-grow: 1;
-        }
-
-        &.content-text {
-          &.show {
-            h2, p {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          }
-
-          h2, p {
-            opacity: 0;
-            transform: translateY(100px);
-            transition: all 1300ms cubic-bezier(0.85, 0.1, 0.25, 1);
-          }
         }
 
         &.content-media {
@@ -647,7 +685,7 @@ img {
       width: 100%;
       height: 100%;
 
-      &:after {
+      span.media-overlay {
         content: '';
         position: absolute;
         display: block;
@@ -657,23 +695,6 @@ img {
         height: 100%;
         z-index: 1;
         background-color: rgba($monty-lightblue, 1);
-        transform: translateX(-101%);
-        transition: 1300ms all ease;
-      }
-
-      .media {
-        opacity: 0;
-        transition: 1000ms all ease;
-      }
-
-      &.show {
-        &:after {
-          transform: translateX(101%);
-        }
-
-        .media {
-          opacity: 1;
-        }
       }
     }
 
@@ -682,12 +703,6 @@ img {
 
       &.outer-wrapper {
         overflow: hidden;
-
-        &.show {
-          span.body-animate {
-            transform: translateY(0);
-          }
-        }
       }
 
       span.body-text {
@@ -699,11 +714,6 @@ img {
         font-size: 26px;
         color: $monty-blue;
         font-weight: 600;
-      }
-
-      &.body-animate {
-        transition: all 1300ms cubic-bezier(0.85, 0.1, 0.25, 1);
-        transform: translateY(100%);
       }
     }
   }

@@ -1,11 +1,12 @@
 
 import '../css/home.css';
 import 'animation.gsap';
-import { TweenMax, TimelineMax } from "gsap/TweenMax";
+import { TweenMax, TimelineMax } from 'gsap/TweenMax';
 import ScrollMagic from 'scrollmagic';
 import {
+  scrollTo,
   hotReload,
-  mobileNavHandler
+  mobileNavHandler,
 } from '../helpers/util.js'
 
 /**
@@ -32,30 +33,162 @@ function handleHeaderSideways() {
  * Scroll Magic Handlers
  */
 
-const sceneClassToggleGenerator = (trigger, target, classToggle, controller) => (
-  new ScrollMagic.Scene({
-    triggerElement: trigger,
-    reverse: false,
-  }).setClassToggle(target, classToggle).addTo(controller)
-);
+const timelineMaster = {
+  helpers: {
+    tweenText: function(text) {
+      const textTween = TweenMax.fromTo(text, 1.3, { yPercent: 100 }, { yPercent: 0, ease: Power3.easeInOut })
 
-const homeController = new ScrollMagic.Controller();
+      return textTween
+    },
+    tweenAnchor: function(text, chevron, underline) {
+      const textTween = TweenMax.fromTo(text, .5, { yPercent: 100 }, { yPercent: 0, ease: Power3.easeInOut })
+      const chevronTween = TweenMax.fromTo(chevron, .5, { yPercent: 100 }, { yPercent: 0, ease: Power3.easeInOut })
+      const underlineTween = TweenMax.fromTo(underline, .5, { width: 0, transformOrigin: '50% 100%' }, { width: '100%' })
 
-const textA1 = sceneClassToggleGenerator('.home-section-one', '#textA1', 'show', homeController)
-const textA2 = sceneClassToggleGenerator('.home-section-one', '#textA2', 'show', homeController)
-const textA3 = sceneClassToggleGenerator('.home-section-one', '#textA3', 'show', homeController)
+      return [textTween, chevronTween, underlineTween]
+    },
+    tweenMedia: function(overlay, media) {
+      const overlayTween = TweenMax.fromTo(overlay, 1.3, { xPercent: -101 }, { xPercent: 101, ease: Power3.easeInOut });
+      const mediaTween = TweenMax.fromTo(media, 1, { autoAlpha: 0 }, { autoAlpha: 1 });
 
-const mediaB1 = sceneClassToggleGenerator('.home-section-two', '#mediaB1', 'show', homeController)
-const textB2 = sceneClassToggleGenerator('.home-section-two', '#textB2', 'show', homeController)
-const textB3 = sceneClassToggleGenerator('.home-section-two', '#textB3', 'show', homeController)
+      return [overlayTween, mediaTween];
+    },
+  },
+  timelineA: {
+    timeline: new TimelineMax(),
+    init: function() {
+      const { timeline } = this;
+      const {
+        helpers: {
+          tweenText,
+          tweenAnchor,
+        }
+      } = timelineMaster;
 
-const mediaC1 = sceneClassToggleGenerator('.home-section-three', '#mediaC1', 'show', homeController)
-const textC2 = sceneClassToggleGenerator('.home-section-three', '#textC2', 'show', homeController)
-const textC3 = sceneClassToggleGenerator('.home-section-three', '#textC3', 'show', homeController)
+      timeline
+        .add(tweenText('#textA1'), 'labelA')
+        .add(tweenText('#textA2'), 'labelA+=.4')
+        .add(tweenText('#textA3'), 'labelA+=.8')
+        .add(tweenAnchor(
+          '#anchorA4 .monty-link-text',
+          '#anchorA4 .monty-link-chevron',
+          '#anchorA4 .monty-link-underline'), 'labelA+=1.2', 'sequence')
 
-const mediaD1 = sceneClassToggleGenerator('.home-section-four', '#mediaD1', 'show', homeController)
-const textD2 = sceneClassToggleGenerator('.home-section-four', '#textD2', 'show', homeController)
-const textD3 = sceneClassToggleGenerator('.home-section-four', '#textD3', 'show', homeController)
+      return timeline;
+    },
+  },
+
+  timelineB: {
+    timeline: new TimelineMax(),
+    init: function() {
+      const { timeline } = this;
+      const {
+        helpers: {
+          tweenText,
+          tweenMedia,
+          tweenAnchor,
+        }
+      } = timelineMaster;
+
+      timeline
+        .add(tweenMedia(
+          '#mediaB1 .media-overlay',
+          '#mediaB1 .media'), 'labelB')
+        .add(tweenText('#textB2'), 'labelB+=.4')
+        .add(tweenText('#textB3'), 'labelB+=.8')
+        .add(tweenAnchor(
+          '#anchorB4 .monty-link-text',
+          '#anchorB4 .monty-link-chevron',
+          '#anchorB4 .monty-link-underline'), 'labelB+=1.2', 'sequence')
+
+      return timeline;
+    },
+  },
+
+  timelineC: {
+    timeline: new TimelineMax(),
+    init: function() {
+      const { timeline } = this;
+      const {
+        helpers: {
+          tweenText,
+          tweenMedia,
+          tweenAnchor,
+        }
+      } = timelineMaster;
+
+      timeline
+        .add(tweenMedia(
+          '#mediaC1 .media-overlay',
+          '#mediaC1 .media'), 'labelC')
+        .add(tweenText('#textC2'), 'labelC+=.4')
+        .add(tweenText('#textC3'), 'labelC+=.8')
+        .add(tweenAnchor(
+          '#anchorC4 .monty-link-text',
+          '#anchorC4 .monty-link-chevron',
+          '#anchorC4 .monty-link-underline'), 'labelC+=1.2', 'sequence')
+
+      return timeline;
+    },
+  },
+
+  timelineD: {
+    timeline: new TimelineMax(),
+    init: function() {
+      const { timeline } = this;
+      const {
+        helpers: {
+          tweenText,
+          tweenMedia,
+          tweenAnchor,
+        }
+      } = timelineMaster;
+
+      timeline
+        .add(tweenMedia(
+          '#mediaD1 .media-overlay',
+          '#mediaD1 .media'), 'labelD')
+        .add(tweenText('#textD2'), 'labelD+=.4')
+        .add(tweenText('#textD3'), 'labelD+=.8')
+        .add(tweenAnchor(
+          '#anchorD4 .monty-link-text',
+          '#anchorD4 .monty-link-chevron',
+          '#anchorD4 .monty-link-underline'), 'labelD+=1.2', 'sequence')
+
+      return timeline;
+    },
+  },
+
+  timelineL: {
+    timeline: new TimelineMax(),
+    init: function() {
+      const { timeline } = this;
+      const {
+        helpers: {
+          tweenAnchor,
+        }
+      } = timelineMaster;
+
+      const sidewaysTextTween = TweenMax.fromTo('#header-sideways .scrollhint-underline', .6, { height: 0 }, { height: '100%' })
+      const heroLineTween = TweenMax.fromTo('.hero-content .hero-border', .6, { height: 0, transformOrigin: '0 0'  }, { height: '100%' })
+      const heroTextTween = TweenMax.fromTo('.hero-content h1', 1, { xPercent: -100 }, { xPercent: 0 });
+
+      timeline
+        .add([heroLineTween, sidewaysTextTween], 'labelL')
+        .add(heroTextTween, 'labelL+=.4')
+        .add(tweenAnchor(
+          '#anchorL1 .monty-link-text',
+          '#anchorL1 .monty-link-chevron',
+          '#anchorL1 .monty-link-underline'), 'labelL+=.8', 'sequence')
+
+      return timeline;
+    }
+  }
+}
+
+const homeController = new ScrollMagic.Controller({
+  globalSceneOptions: { reverse: false }
+});
 
 /**
  * Google maps handler
@@ -85,6 +218,24 @@ function initMap(options) {
 
 window.addEventListener('resize', e => {
   handleHeaderSideways();
+})
+
+window.onload = function() {
+  homeController.addScene([
+    new ScrollMagic.Scene({ triggerElement: '.home-section-one' }).setTween(timelineMaster.timelineA.init()),
+    new ScrollMagic.Scene({ triggerElement: '.home-section-two' }).setTween(timelineMaster.timelineB.init()),
+    new ScrollMagic.Scene({ triggerElement: '.home-section-three' }).setTween(timelineMaster.timelineC.init()),
+    new ScrollMagic.Scene({ triggerElement: '.home-section-four' }).setTween(timelineMaster.timelineD.init()),
+    new ScrollMagic.Scene({ triggerElement: '.home-section-header' }).setTween(timelineMaster.timelineL.init()),
+  ])
+}
+
+document.querySelector('#footer-sideways').addEventListener('click', e => {
+  scrollTo(e, '.home-section-header')
+})
+
+document.querySelector('#header-sideways').addEventListener('click', e => {
+  scrollTo(e, '.home-section-one')
 })
 
 window.addEventListener('load', function(e) {
