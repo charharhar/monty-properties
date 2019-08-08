@@ -6,6 +6,7 @@ import ScrollMagic from 'scrollmagic';
 import {
   scrollTo,
   hotReload,
+  sliceArray,
   mobileNavHandler,
 } from '../helpers/util.js'
 
@@ -250,7 +251,101 @@ function initMap(options) {
  * Carousel Handler
  */
 
-const carousel = document.querySelector('#home-carousel');
+class Carousel {
+  constructor(element) {
+    const _ = this;
+
+    _.sliderNode = document.querySelector(element);
+    _.nextNode = document.querySelector('#nextSlide');
+    _.dotsNode =
+
+    _.slides = null;
+    _.dots = null;
+
+    _.slideBaseClass = null;
+    _.dotsBaseClass = null;
+
+    _.slidesCount = 0;
+    _.currentSlide = 0;
+  }
+
+  init() {
+    const _ = this;
+
+    _.slides = sliceArray(_.sliderNode.children)
+    _.slides.forEach((node, index) => {
+      node.setAttribute('data-slide-index', index)
+    })
+    _.slidesCount = _.slides.length;
+
+    _.slideBaseClass = 'carousel-slide';
+    _.slides[0].className = `${_.slideBaseClass} active`;
+    _.dotsBaseClass = 'carousel-dots';
+
+    _.buildDots();
+
+    _.dotsNode.addEventListener('click', e => {
+      carousel.changeSlide(e)
+    })
+    _.nextNode.addEventListener('click', e => {
+      carousel.changeSlide(e)
+    })
+  }
+
+  buildDots() {
+    const _ = this;
+    let dotsWrapper;
+
+    dotsWrapper = document.createElement('ul')
+    dotsWrapper.className = 'carousel-dots-wrapper';
+
+    for (let index = 0; index < _.slidesCount; index++) {
+      let dot = document.createElement('li')
+      dot.className = 'carousel-dots';
+      dot.setAttribute('data-slide-index', index)
+      dot.setAttribute('data-message', 'index')
+      dotsWrapper.appendChild(dot);
+    }
+
+    dotsWrapper.firstElementChild.className += ' active';
+    _.dots = sliceArray(dotsWrapper.children)
+    _.dotsNode = dotsWrapper
+    _.sliderNode.appendChild(dotsWrapper);
+  }
+
+  changeSlide(e) {
+    const _ = this;
+    const target = e.target;
+    const querySlide = _.currentSlide + 1;
+    let nextSlide;
+
+    switch (target.getAttribute('data-message')) {
+
+      case 'next':
+        nextSlide = (querySlide == _.slidesCount) ? 0 : querySlide;
+        break;
+
+      case 'index':
+        nextSlide = parseInt(target.getAttribute('data-slide-index'));
+        break;
+
+      default:
+        return;
+
+    }
+
+    _.slides[_.currentSlide].className = _.slideBaseClass;
+    _.slides[nextSlide].className = `${_.slideBaseClass} active`;
+    _.dots[_.currentSlide].className = _.dotsBaseClass
+    _.dots[nextSlide].className = `${_.dotsBaseClass} active`;
+
+    _.currentSlide = nextSlide
+  }
+}
+
+const carousel = new Carousel('#home-carousel')
+
+carousel.init();
 
 
 /**

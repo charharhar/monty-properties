@@ -681,6 +681,69 @@ img {
       position: relative;
       height: 100%;
       width: 100%;
+
+      .carousel-slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: 400ms opacity ease;
+
+        figure.aspect-image {
+          transition: transform 8000ms ease;
+        }
+
+        &.active {
+          opacity: 1;
+
+          figure.aspect-image {
+            transform: scale(1.2);
+          }
+        }
+
+        span.carousel-caption {
+          display: block;
+          position: absolute;
+          top: 25px;
+          left: 25px;
+          color: $main-white;
+          font-size: 18px;
+          font-weight: 600;
+          z-index: 5;
+        }
+      }
+
+      .carousel-dots-wrapper {
+        position: absolute;
+        bottom: 25px;
+        right: 25px;
+        list-style: none;
+        z-index: 5;
+        display: flex;
+        flex-direction: row;
+
+        .carousel-dots {
+          position: relative;
+          border: 1px solid $main-white;
+          border-radius: 50%;
+          width: 10px;
+          height: 10px;
+          margin: 0 7px;
+          cursor: pointer;
+          transition: 200ms all ease;
+
+          &:hover {
+            background-color: rgba($main-white, 0.7);
+            transform: scale(1.3);
+          }
+
+          &.active {
+            background-color: $main-white;
+          }
+        }
+      }
     }
 
     div.media-content {
