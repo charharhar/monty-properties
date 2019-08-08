@@ -7,6 +7,7 @@ import {
   scrollTo,
   hotReload,
   sliceArray,
+  findParent,
   mobileNavHandler,
 } from '../helpers/util.js'
 
@@ -277,10 +278,14 @@ class Carousel {
     _.buildDots();
 
     _.dotsNode.addEventListener('click', e => {
-      carousel.changeSlide(e)
+      carousel.changeSlide(e.target)
     })
     _.nextNode.addEventListener('click', e => {
-      carousel.changeSlide(e)
+      let target = e.target;
+      if (!target.getAttribute('data-message')) {
+        target = findParent(target, 'nextSlide')
+      }
+      carousel.changeSlide(target)
     })
   }
 
@@ -305,14 +310,13 @@ class Carousel {
     _.sliderNode.appendChild(dotsWrapper);
   }
 
-  changeSlide(e) {
+  changeSlide(target) {
     const _ = this;
-    const target = e.target;
     const querySlide = _.currentSlide + 1;
+    let dataMessage = target.getAttribute('data-message');
     let nextSlide;
 
-    switch (target.getAttribute('data-message')) {
-
+    switch (dataMessage) {
       case 'next':
         nextSlide = (querySlide == _.slidesCount) ? 0 : querySlide;
         break;
@@ -323,7 +327,6 @@ class Carousel {
 
       default:
         return;
-
     }
 
     _.slides[_.currentSlide].className = _.slideBaseClass;
