@@ -41,21 +41,13 @@ const timelineMaster = {
 
       return textTween
     },
-    tweenAnchor: function(text, chevron, underline) {
+    tweenAnchor: function(text, chevron) {
       const tweenArray = []
       const textTween = TweenMax.fromTo(text, .5, { yPercent: 100 }, { yPercent: 0, ease: Power3.easeInOut })
       const chevronTween = TweenMax.fromTo(chevron, .5, { yPercent: 100 }, { yPercent: 0, ease: Power3.easeInOut })
       let underlineTween;
 
-      tweenArray.push(textTween, chevronTween);
-
-      if (underline) {
-        underlineTween = TweenMax.fromTo(underline, .5, { width: 0, transformOrigin: '50% 100%' }, { width: '100%' })
-
-        tweenArray.push(underlineTween)
-      }
-
-      return tweenArray;
+      return [textTween, chevronTween];
     },
     tweenMedia: function(overlay, media) {
       const overlayTween = TweenMax.fromTo(overlay, 1.3, { xPercent: -101 }, { xPercent: 101, ease: Power3.easeInOut });

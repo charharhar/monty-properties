@@ -474,7 +474,7 @@ img {
       cursor: pointer;
 
       &:hover {
-        .monty-link-chevron {
+        .chevron-wrapper {
           background-color: $main-white;
 
           .chevron {
@@ -486,7 +486,7 @@ img {
 
     &.blue {
       &:hover {
-        .monty-link-chevron {
+        .chevron-wrapper {
           background-color: $monty-blue;
 
           .chevron {
@@ -500,7 +500,7 @@ img {
       }
 
       span.monty-link-text { color: $monty-blue; }
-      .monty-link-chevron, .chevron {
+      .chevron-wrapper, .chevron {
         border-color: $monty-blue;
       }
     }
@@ -516,6 +516,9 @@ img {
       margin-right: 15px;
       height: 40px;
       width: 40px;
+    }
+
+    .chevron-wrapper {
       border-width: 3px;
     }
   }
@@ -530,18 +533,23 @@ img {
     overflow: hidden;
 
     &:hover {
-      .monty-link-chevron {
+      .chevron-wrapper {
         background-color: $main-white;
 
         .chevron {
           border-color: $monty-blue;
         }
       }
+
+      .monty-link-text:after {
+        width: 100%;
+        left: 0;
+      }
     }
 
     &.blue {
       &:hover {
-        .monty-link-chevron {
+        .chevron-wrapper {
           background-color: $main-white;
 
           .chevron {
@@ -553,12 +561,12 @@ img {
       .monty-link-text {
         color: #000;
 
-        span.monty-link-underline {
+        &:after {
           background-color: $monty-blue;
         }
       }
 
-      .monty-link-chevron {
+      .chevron-wrapper {
         border-color: $monty-blue;
         background-color: $monty-blue;
       }
@@ -568,7 +576,7 @@ img {
       position: relative;
       color: #fff;
 
-      span.monty-link-underline {
+      &:after {
         content: '';
         position: absolute;
         width: 0;
@@ -576,22 +584,29 @@ img {
         display: block;
         background-color: #fff;
         bottom: 0;
-        left: 0;
+        right: 0;
+        transition: 400ms all ease;
       }
     }
   }
 
   .monty-link-chevron {
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: transparent;
     height: 30px;
     width: 30px;
-    border-radius: 6px;
-    border: 2px solid #fff;
-    transition: 200ms all ease;
+
+    .chevron-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: transparent;
+      border-radius: 6px;
+      border: 2px solid #fff;
+      height: 100%;
+      width: 100%;
+      transition: 200ms all ease;
+    }
 
     .chevron {
       border-right: 2px solid #fff;
@@ -772,11 +787,15 @@ img {
         transform: translateY(-50%);
         height: 100px;
         width: 100px;
-        border-radius: 25px;
         cursor: pointer;
+        transition: 300ms all ease;
 
         &:hover {
           transform: translateY(-50%) scale(1.1);
+        }
+
+        .chevron-wrapper {
+          border-radius: 25px;
         }
 
         .chevron {
@@ -892,7 +911,7 @@ img {
         font-size: 13px;
       }
 
-      .monty-link-chevron {
+      .chevron-wrapper {
         margin-right: 15px;
         height: 40px;
         width: 40px;
@@ -1014,7 +1033,7 @@ img {
             }
           }
 
-          .monty-link-chevron {
+          .chevron-wrapper {
             border-color: $monty-blue;
             background-color: $monty-blue;
           }
@@ -1038,7 +1057,7 @@ img {
           }
         }
 
-        .monty-link-chevron {
+        .chevron-wrapper {
           position: relative;
           background-color: transparent;
           height: 30px;
