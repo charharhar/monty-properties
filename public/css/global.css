@@ -523,7 +523,8 @@ img {
     }
   }
 
-  a.monty-link {
+  a.monty-link,
+  span.monty-link {
     position: relative;
     display: flex;
     justify-content: space-between;
@@ -559,7 +560,7 @@ img {
       }
 
       .monty-link-text {
-        color: #000;
+        color: $monty-blue;
 
         &:after {
           background-color: $monty-blue;
@@ -634,6 +635,7 @@ img {
       max-width: 1280px;
 
       .content-wrapper {
+        position: relative;
         display: flex;
         flex-flow: column nowrap;
         margin: 0 15px;
@@ -693,9 +695,11 @@ img {
     }
 
     div.carousel-wrapper {
-      position: relative;
+      position: absolute;
       height: 100%;
       width: 100%;
+      top: 0;
+      left: 0;
 
       .carousel-slide {
         position: absolute;
@@ -788,6 +792,7 @@ img {
         height: 100px;
         width: 100px;
         cursor: pointer;
+        z-index: 1;
         transition: 300ms all ease;
 
         &:hover {
@@ -822,6 +827,14 @@ img {
         font-size: 26px;
         color: $monty-blue;
         font-weight: 600;
+      }
+
+      span.body-subheader {
+        font-size: 20px;
+      }
+
+      span.link-content {
+        text-decoration: underline;
       }
     }
   }

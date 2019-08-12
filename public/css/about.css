@@ -1,5 +1,143 @@
 @import 'global';
 
-.about-heading {
-  color: lightblue;
+.wrapper {
+  section.section {
+    .section-content {
+      &.wrapping-content {
+        flex-wrap: wrap;
+      }
+
+      .content-wrapper {
+        &.content-fill-100 {
+          justify-content: center;
+          flex: 1 0 100%;
+          margin: 15px 0;
+          flex-flow: initial;
+
+          .content-wrapper {
+            margin-left: auto;
+            margin-bottom: 0;
+          }
+
+          .overlap-content {
+            position: absolute;
+            width: 40%;
+            background-color: $monty-blue;
+            z-index: 1;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+
+            &:before {
+              content: '';
+              display: block;
+              width: 100%;
+              padding-top: 90%;
+            }
+          }
+        }
+
+        &.content-even {
+          flex-flow: row nowrap;
+        }
+
+        .content-anchor-block {
+          position: relative;
+          display: block;
+          width: 50%;
+          margin-bottom: 0;
+          overflow: hidden;
+
+          &:before {
+            content: '';
+            display: block;
+            width: 100%;
+            padding-bottom: 28.11%;
+          }
+
+          &:hover {
+            figure {
+              transform: scale(1.5);
+              transition: 8000ms all ease;
+            }
+
+            .monty-link {
+              .chevron-wrapper {
+                background-color: $main-white;
+
+                .chevron {
+                  border-color: $monty-blue;
+                }
+              }
+
+              .monty-link-text:after {
+                width: 100%;
+                left: 0;
+              }
+
+              &.blue {
+                .chevron-wrapper {
+                  background-color: $main-white;
+
+                  .chevron {
+                    border-color: $monty-blue;
+                  }
+                }
+              }
+            }
+          }
+
+          &#contact-anchor {
+            span.body-content {
+              span.body-header {
+                color: $main-white;
+              }
+            }
+          }
+
+          &#projects-anchor {
+            span.body-content {
+              span.body-header {
+                color: $main-white;
+              }
+            }
+          }
+
+          figure {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            transition: 400ms all ease;
+
+            &:before {
+              content: '';
+              position: absolute;
+              display: block;
+              height: 100%;
+              width: 100%;
+              top: 0;
+              left: 0;
+              background-color: rgba(0, 0, 0, 0.65);
+            }
+          }
+
+          .content-inner {
+            position: absolute;
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: flex-end;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+        }
+      }
+    }
+  }
+
+  .sideways-scrollhint {
+    display: none;
+  }
 }
