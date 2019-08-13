@@ -43,13 +43,6 @@ export function mobileNavHandler(toggle, mobileNav) {
   });
 }
 
-export function getDistanceFromLeft(el) {
-  const rect = el.getBoundingClientRect();
-  const docEl = document.documentElement;
-
-  return (rect.left + (window.pageXOffset || docEl.scrollLeft || 0))
-}
-
 export function scrollTop() {
   return (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
 }
@@ -61,3 +54,4 @@ export function scrollTo(e, elem) {
     scrollTop: $(elem).offset().top
   }, 1000);
 }
+

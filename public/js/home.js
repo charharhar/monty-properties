@@ -8,6 +8,7 @@ import {
   hotReload,
   sliceArray,
   findParent,
+  buildTimeline,
   mobileNavHandler,
 } from '../helpers/util.js'
 
@@ -250,7 +251,7 @@ class Carousel {
 
     _.sliderNode = document.querySelector(element);
     _.nextNode = document.querySelector('#nextSlide');
-    _.dotsNode =
+    _.dotsNode = null;
 
     _.slides = null;
     _.dots = null;
@@ -341,7 +342,6 @@ class Carousel {
 const carousel = new Carousel('#home-carousel')
 
 carousel.init();
-
 
 /**
  * Event Listeners
