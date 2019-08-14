@@ -38,6 +38,7 @@ function handleHeaderSideways() {
 
 const timelineMaster = {
   helpers: {
+    newTimeline: () => new TimelineMax(),
     tweenText: function(text) {
       const textTween = TweenMax.fromTo(text, 1.3, { yPercent: 100 }, { yPercent: 0, ease: Power3.easeInOut })
 
@@ -59,15 +60,16 @@ const timelineMaster = {
     },
   },
   timelineA: {
-    timeline: new TimelineMax(),
     init: function() {
-      const { timeline } = this;
       const {
         helpers: {
           tweenText,
+          tweenMedia,
           tweenAnchor,
+          newTimeline,
         }
       } = timelineMaster;
+      const timeline = newTimeline();
 
       timeline
         .add(tweenText('#textA1'), 'labelA')
@@ -83,16 +85,16 @@ const timelineMaster = {
   },
 
   timelineB: {
-    timeline: new TimelineMax(),
     init: function() {
-      const { timeline } = this;
       const {
         helpers: {
           tweenText,
           tweenMedia,
           tweenAnchor,
+          newTimeline,
         }
       } = timelineMaster;
+      const timeline = newTimeline();
 
       timeline
         .add(tweenMedia(
@@ -110,16 +112,16 @@ const timelineMaster = {
   },
 
   timelineC: {
-    timeline: new TimelineMax(),
     init: function() {
-      const { timeline } = this;
       const {
         helpers: {
           tweenText,
           tweenMedia,
           tweenAnchor,
+          newTimeline,
         }
       } = timelineMaster;
+      const timeline = newTimeline();
 
       timeline
         .add(tweenMedia(
@@ -137,16 +139,16 @@ const timelineMaster = {
   },
 
   timelineD: {
-    timeline: new TimelineMax(),
     init: function() {
-      const { timeline } = this;
       const {
         helpers: {
           tweenText,
           tweenMedia,
           tweenAnchor,
+          newTimeline,
         }
       } = timelineMaster;
+      const timeline = newTimeline();
 
       timeline
         .add(tweenMedia(
@@ -164,14 +166,16 @@ const timelineMaster = {
   },
 
   timelineL: {
-    timeline: new TimelineMax(),
     init: function() {
-      const { timeline } = this;
       const {
         helpers: {
+          tweenText,
+          tweenMedia,
           tweenAnchor,
+          newTimeline,
         }
       } = timelineMaster;
+      const timeline = newTimeline();
 
       const sidewaysTextTween = TweenMax.fromTo('#header-sideways .scrollhint-underline', 1, { height: 0 }, { height: '100%' })
       const heroLineTween = TweenMax.fromTo('.hero-content .hero-border', .6, { height: 0, transformOrigin: '0 0'  }, { height: '100%' })
@@ -193,14 +197,16 @@ const timelineMaster = {
   },
 
   timelineF: {
-    timeline: new TimelineMax(),
     init: function() {
-      const { timeline } = this;
       const {
         helpers: {
+          tweenText,
+          tweenMedia,
           tweenAnchor,
+          newTimeline,
         }
       } = timelineMaster;
+      const timeline = newTimeline();
 
       const sidewaysTextTween = TweenMax.fromTo('#footer-sideways .scrollhint-underline', 1, { height: 0 }, { height: '100%' })
 
