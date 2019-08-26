@@ -91,16 +91,26 @@
           &#contact-anchor {
             span.body-content {
               span.body-header {
-                color: $main-white;
+                text-transform: none;
+                color: $monty-blue;
               }
+            }
+
+            figure:before {
+              background-color: rgba(255, 255, 255, 0.65);
             }
           }
 
           &#projects-anchor {
             span.body-content {
               span.body-header {
+                text-transform: none;
                 color: $main-white;
               }
+            }
+
+            figure:before {
+              background-color: rgba(0, 0, 0, 0.65);
             }
           }
 
@@ -120,7 +130,6 @@
               width: 100%;
               top: 0;
               left: 0;
-              background-color: rgba(0, 0, 0, 0.65);
             }
           }
 
@@ -209,7 +218,33 @@
     section.section {
       .section-content {
         .content-wrapper {
+          &.content-even {
+            margin: 15px 0;
+            flex-flow: row wrap;
+          }
+
+          &.content-fill-100.overlap-container {
+            display: block;
+
+            .overlap-content {
+              position: relative;
+              top: -15%;
+              transform: translateX(-50%);
+              left: 50%;
+              margin: 0;
+              width: 80%;
+            }
+          }
+
+          .content-anchor-block {
+            width: 100%;
+          }
+
         }
+      }
+
+      &.about-section-four {
+        padding-bottom: 120px;
       }
     }
 
