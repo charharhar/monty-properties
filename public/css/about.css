@@ -203,3 +203,43 @@
     display: none;
   }
 }
+
+@media (max-width: 768px) {
+  .wrapper {
+    section.section {
+      .section-content {
+        .content-wrapper {
+        }
+      }
+    }
+
+    .sideways-scrollhint#footer-sideways {
+      display: flex;
+    }
+  }
+}
+
+@media (max-width: 575.98px) {
+  .wrapper {
+    header.section-header {
+      &.aspect-2811 {
+        .aspect-hero {
+          padding-bottom: 90%;
+
+          figure {
+            width: 318%;
+          }
+        }
+      }
+
+      .hero-content {
+        left: 30px;
+        padding-left: 15px;
+        padding-right: 15px;
+
+        h1 {
+        }
+      }
+    }
+  }
+}

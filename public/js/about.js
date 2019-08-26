@@ -4,6 +4,7 @@ import {
   hotReload,
   sliceArray,
   findParent,
+  scrollTo,
 } from '../helpers/util.js'
 
 /**
@@ -120,6 +121,9 @@ carousel.init();
  * Event Listeners
  */
 
+document.querySelector('#footer-sideways').addEventListener('click', e => {
+  scrollTo(e, '.about-section-header')
+})
 window.addEventListener('load', function(e) {
 })
 
