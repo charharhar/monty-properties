@@ -134,7 +134,7 @@ function configFactory(env, argv) {
                   options: {
                     sourceMap: true,
                     config: {
-                      path: './webpack/postcss.config.js',
+                      path: './tools/webpack/postcss.config.js',
                     }
                   },
                 },
@@ -157,7 +157,7 @@ function configFactory(env, argv) {
                   options: {
                     sourceMap: true,
                     config: {
-                      path: './webpack/postcss.config.js',
+                      path: './tools/webpack/postcss.config.js',
                     },
                   },
                 },

@@ -2,14 +2,15 @@ const path = require('path');
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { path: appRoot } = require('app-root-path')
 
 module.exports = {
   stats: 'errors-warnings',
   entry: {
-    server: path.resolve(__dirname, '../server/index'),
+    server: path.resolve(appRoot, './server/index'),
   },
   output: {
-    path: path.join(__dirname, '../dist'),
+    path: path.resolve(appRoot, './dist'),
     publicPath: '/',
     filename: '[name].js',
   },

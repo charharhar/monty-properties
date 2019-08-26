@@ -5,7 +5,7 @@ import chalk from 'chalk'
 import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
-import config from '../webpack/webpack.config';
+import config from '../tools/webpack/webpack.config';
 
 const port = process.env.PORT || 3000;
 const webpackConfig = config(null, {

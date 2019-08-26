@@ -38,8 +38,9 @@
     "webpack-notifier": "^1.8.0"
   },
   "scripts": {
-    "develop": "rm -rf dist && webpack --config webpack/webpack.server.config.js --mode development && node ./dist/server.js",
-    "build": "rm -rf dist && webpack --config webpack/webpack.server.config.js --mode production && webpack --config webpack/webpack.config.js --mode production",
+    "newPage": "node tools/scripts/newPage",
+    "develop": "rm -rf dist && webpack --config tools/webpack/webpack.server.config.js --mode development && node ./dist/server.js",
+    "build": "rm -rf dist && webpack --config tools/webpack/webpack.server.config.js --mode production && webpack --config tools/webpack/webpack.config.js --mode production",
     "start": "node ./dist/server.js"
   }
 }
