@@ -24,12 +24,20 @@ mobileNavHandler(hamburger, mobileNavList);
  * Sideways CSS handler
  */
 function handleHeaderSideways() {
+  const responsiveWidth = window.innerWidth;
+
   const navHeight = document.querySelector('.main-navigation').clientHeight;
   const headerHeight = document.querySelector('.section-header').clientHeight;
-  const sidewaysHeight = headerHeight - navHeight - (headerHeight * .07);
-  const sidewaysRight = document.querySelector('.navigation-list-wrapper ul').getBoundingClientRect().right - 15;
+  const heroHeight = document.querySelector('.hero-content').getBoundingClientRect().bottom;
 
-  document.querySelector('#header-sideways').setAttribute('style', `height: ${sidewaysHeight}px;left: ${sidewaysRight}px;`)
+  const sidewaysHeight = responsiveWidth <= 576
+    ? window.innerHeight - heroHeight
+    : headerHeight - navHeight - (headerHeight * .07);
+  const sidewaysRight = responsiveWidth <= 768
+    ? 'auto'
+    : `${document.querySelector('.navigation-list-wrapper ul').getBoundingClientRect().right - 15}px`;
+
+  document.querySelector('#header-sideways').setAttribute('style', `height:${sidewaysHeight}px;left:${sidewaysRight};`)
 }
 
 /**

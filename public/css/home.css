@@ -16,3 +16,50 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .wrapper {
+    .sideways-scrollhint {
+      display: flex;
+      right: 43px;
+    }
+
+    section.section {
+      &.home-section-one {
+        .section-content {
+          max-width: 550px;
+          margin: 0 auto;
+          padding: 100px 0;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 575.98px) {
+  .wrapper {
+    header.section-header {
+      &.aspect-5625 {
+        .aspect-hero {
+          padding-bottom: 180%;
+
+          figure {
+            width: 320%;
+            left: 50%;
+            transform: translateX(-50%);
+          }
+        }
+      }
+
+      .hero-content {
+        left: 15px;
+        padding-left: 15px;
+        padding-right: 15px;
+
+        h1 {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}
