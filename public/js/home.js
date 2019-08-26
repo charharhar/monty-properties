@@ -222,7 +222,7 @@ const timelineMaster = {
 }
 
 const homeController = new ScrollMagic.Controller({
-  globalSceneOptions: { reverse: false }
+
 });
 
 /**
