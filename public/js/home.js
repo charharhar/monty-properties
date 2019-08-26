@@ -226,28 +226,6 @@ const homeController = new ScrollMagic.Controller({
 });
 
 /**
- * Google maps handler
- */
-
-const GOOGLE_MAPS_STYLE = []
-
-const MAP_OPTIONS = {
-  map_id: '#monty-prop',
-  center: { lat: 22.322030, lng: 114.207830 },
-  zoom: 16,
-  disableDoubleClickZoom: true,
-  scrollwheel: false,
-  mapTypeControl: false,
-  streetViewControl: false,
-  styles: GOOGLE_MAPS_STYLE,
-}
-
-function initMap(options) {
-  const { map_id, center, zoom, markers } = options;
-  const map = new google.maps.Map(document.querySelector(map_id), options);
-}
-
-/**
  * Carousel Handler
  */
 
@@ -378,8 +356,6 @@ document.querySelector('#header-sideways').addEventListener('click', e => {
 
 window.addEventListener('load', function(e) {
   handleHeaderSideways()
-
-  initMap(MAP_OPTIONS)
 })
 
 hotReload();
