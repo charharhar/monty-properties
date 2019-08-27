@@ -37,112 +37,6 @@
             }
           }
         }
-
-        &.content-even {
-          flex-flow: row nowrap;
-        }
-
-        .content-anchor-block {
-          position: relative;
-          display: block;
-          width: 50%;
-          margin-bottom: 0;
-          overflow: hidden;
-
-          &:before {
-            content: '';
-            display: block;
-            width: 100%;
-            padding-bottom: 28.11%;
-          }
-
-          &:hover {
-            figure {
-              transform: scale(1.5);
-              transition: 8000ms all ease;
-            }
-
-            .monty-link {
-              .chevron-wrapper {
-                background-color: $main-white;
-
-                .chevron {
-                  border-color: $monty-blue;
-                }
-              }
-
-              .monty-link-text:after {
-                width: 100%;
-                left: 0;
-              }
-
-              &.blue {
-                .chevron-wrapper {
-                  background-color: $main-white;
-
-                  .chevron {
-                    border-color: $monty-blue;
-                  }
-                }
-              }
-            }
-          }
-
-          &#contact-anchor {
-            span.body-content {
-              span.body-header {
-                text-transform: none;
-                color: $monty-blue;
-              }
-            }
-
-            figure:before {
-              background-color: rgba(255, 255, 255, 0.65);
-            }
-          }
-
-          &#projects-anchor {
-            span.body-content {
-              span.body-header {
-                text-transform: none;
-                color: $main-white;
-              }
-            }
-
-            figure:before {
-              background-color: rgba(0, 0, 0, 0.65);
-            }
-          }
-
-          figure {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            transition: 400ms all ease;
-
-            &:before {
-              content: '';
-              position: absolute;
-              display: block;
-              height: 100%;
-              width: 100%;
-              top: 0;
-              left: 0;
-            }
-          }
-
-          .content-inner {
-            position: absolute;
-            display: flex;
-            flex-flow: column nowrap;
-            align-items: flex-end;
-            right: 40px;
-            top: 50%;
-            transform: translateY(-50%);
-          }
-        }
       }
     }
 
@@ -221,6 +115,10 @@
           &.content-even {
             margin: 15px 0;
             flex-flow: row wrap;
+
+            .content-anchor-block {
+              margin: 0;
+            }
           }
 
           &.content-fill-100.overlap-container {
@@ -235,11 +133,6 @@
               width: 80%;
             }
           }
-
-          .content-anchor-block {
-            width: 100%;
-          }
-
         }
       }
 
@@ -250,31 +143,6 @@
 
     .sideways-scrollhint#footer-sideways {
       display: flex;
-    }
-  }
-}
-
-@media (max-width: 575.98px) {
-  .wrapper {
-    header.section-header {
-      &.aspect-2811 {
-        .aspect-hero {
-          padding-bottom: 90%;
-
-          figure {
-            width: 318%;
-          }
-        }
-      }
-
-      .hero-content {
-        left: 30px;
-        padding-left: 15px;
-        padding-right: 15px;
-
-        h1 {
-        }
-      }
     }
   }
 }
