@@ -118,7 +118,7 @@
     }
 
     footer.section-footer {
-      padding-top: 160px;
+      padding-top: 180px;
     }
 
     .sideways-scrollhint#footer-sideways {
@@ -206,6 +206,11 @@
           }
         }
       }
+
+    }
+
+    footer.section-footer {
+      padding-top: 90px;
     }
   }
 }

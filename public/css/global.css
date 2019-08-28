@@ -345,7 +345,7 @@ img {
   }
 
   .main-navigation {
-    padding: 15px 40px;
+    padding: 15px 30px;
     height: 90px;
 
     .navigation-list-wrapper {
@@ -579,6 +579,8 @@ img {
     width: 160px;
     margin: 20px 0 0;
     overflow: hidden;
+    cursor: pointer;
+    flex-shrink: 0;
 
     &:hover {
       .chevron-wrapper {
@@ -1316,6 +1318,17 @@ img {
           }
         }
       }
+
+      .section-content .content-wrapper .content-anchor-block {
+        &:before {
+          padding-bottom: 40%;
+        }
+
+        &#projects-anchor figure img {
+          width: auto;
+          height: 100%;
+        }
+      }
     }
 
     header.section-header {
@@ -1330,7 +1343,7 @@ img {
       }
 
       .hero-content {
-        left: 47px;
+        left: 37px;
         padding-left: 15px;
         padding-right: 15px;
 
