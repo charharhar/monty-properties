@@ -9,14 +9,13 @@
 
       .content-wrapper {
         &.content-fill-100 {
-          justify-content: center;
-          flex: 1 0 100%;
-          margin: 15px 0;
-          flex-flow: initial;
-
           .content-wrapper {
             margin-left: auto;
             margin-bottom: 0;
+          }
+
+          .outer-wrapper {
+            margin: 0 auto;
           }
 
           .overlap-content {

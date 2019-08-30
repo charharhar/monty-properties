@@ -62,9 +62,7 @@
           figure {
             position: relative;
             display: block;
-            background-color: $monty-blue;
-            width: 150px;
-            height: 150px;
+            max-width: 150px;
           }
 
           .context-inner {

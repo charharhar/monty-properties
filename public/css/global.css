@@ -689,6 +689,10 @@ img {
         flex-flow: column nowrap;
         margin: 0 15px;
 
+        .content-wrapper {
+          margin: 0;
+        }
+
         &.centered {
           justify-content: center;
         }
@@ -711,6 +715,12 @@ img {
 
         &.content-even {
           flex-flow: row wrap;
+        }
+
+        &.content-fill-100 {
+          flex: 1 0 100%;
+          margin: 15px 0;
+          flex-flow: initial;
         }
 
         &.aspect-ratio-box {
@@ -837,7 +847,7 @@ img {
         background-color: rgba($monty-lightblue, 1);
       }
 
-      .monty-link-chevron {
+      .monty-link-chevron.nextSlide {
         position: absolute;
         top: 50%;
         right: 40px;
@@ -1307,7 +1317,7 @@ img {
         }
 
         div.media-content {
-          .monty-link-chevron {
+          .monty-link-chevron.nextSlide {
             width: 80px;
             height: 80px;
             right: 20px;

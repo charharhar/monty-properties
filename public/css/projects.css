@@ -28,7 +28,18 @@
     }
 
     &.projects-section-two {
+      padding: 0;
+
       .project-wrapper {
+        position: relative;
+        display: flex;
+        flex-flow: column nowrap;
+        width: 100%;
+
+        .project-header,
+        .media-content {
+          padding: 0 30px;
+        }
 
         .project-header {
           display: flex;
@@ -64,20 +75,87 @@
           }
         }
 
-        .project-details {
-          display: flex;
+        .project-contents {
 
-          .outer-wrapper {
-            max-width: 690px;
-            margin-right: 65px;
+          .media-content {
+            position: relative;
+            display: flex;
+            flex-flow: column nowrap;
           }
 
-          span.monty-link {
-            margin-top: 5px;
-            align-self: flex-start;
+          .media-overlay{ display: none;} // delete
+
+          .project-details {
+            display: flex;
+
+            .outer-wrapper {
+              max-width: 690px;
+              margin-right: 65px;
+            }
+
+            span.monty-link {
+              margin-top: 5px;
+              align-self: flex-start;
+            }
+          }
+
+          .carousel-wrapper {
+            position: relative;
+
+            .carousel-init-wrapper {
+              position: relative;
+              top: 0;
+              left: 0;
+
+              .carousel-slide {
+                opacity: 1; // delete
+
+                &:first-of-type {
+                  position: relative;
+                }
+
+                figure {
+                  position: relative;
+                  height: auto;
+                }
+              }
+            }
+
+            .carousel-more-modal {
+              position: absolute;
+              top: 0;
+              right: -30px;
+              height: 100%;
+              width: calc(40% + 30px);
+              background-color: $monty-blue;
+              padding: 60px;
+              z-index: 10;
+              display: flex;
+              flex-flow: column nowrap;
+              transform: translate(100%);
+              transition: 500ms all cubic-bezier(.5, .25, 0, 1);
+
+              &.modal-active {
+                transform: translate(0);
+              }
+
+              p.carousel-more-text {
+                color: $main-white;
+                line-height: 1.4;
+              }
+
+              .monty-link {
+                margin-top: auto;
+
+                .monty-link-text {
+                  width: 90px;
+                  text-transform: uppercase;
+                }
+              }
+            }
+
           }
         }
-
       }
     }
   }
@@ -144,10 +222,86 @@
 
       &.projects-section-one {
         padding-top: 60px;
+
+        span.body-content {
+          span.body-text {
+            padding: 0;
+            text-align: left;
+          }
+
+          span.body-header {
+            text-align: left;
+            padding-left: 0;
+          }
+        }
       }
 
       &.projects-section-two {
         padding: 60px 0;
+
+        .project-wrapper {
+          .media-content {
+            padding: 0;
+          }
+
+          .project-header {
+            padding: 0 15px;
+            flex-flow: column nowrap;
+
+            span {
+              margin-bottom: 15px;
+
+              &:not(:last-of-type) {
+                margin-right: 0;
+              }
+
+              &:last-of-type {
+                margin-left: 4px;
+              }
+
+              &.project-title {
+                margin-bottom: 25px;
+                font-size: 26px;
+              }
+
+              &.project-type img {
+                margin-right: 15px;
+              }
+            }
+          }
+
+          .project-contents {
+            .project-details {
+              margin: 45px 0;
+              padding: 0 15px;
+              flex-flow: column nowrap;
+              order: 2;
+
+              .outer-wrapper {
+                margin-right: 0;
+                margin-bottom: 15px;
+              }
+            }
+
+            .carousel-wrapper {
+              position: initial;
+
+              .carousel-more-modal {
+                right: 0;
+                width: 100%;
+                padding: 15px;
+
+                &.modal-active {
+                }
+
+                p.carousel-more-text {
+                  line-height: 1.4;
+                }
+              }
+            }
+          }
+
+        }
       }
     }
 
