@@ -23,13 +23,10 @@ modalControl.forEach(node => {
   node.addEventListener('click', e => {
     const message = node.getAttribute('data-message');
     const targetId = node.getAttribute('data-target');
-    let className = 'carousel-more-modal ';
 
     const target = document.querySelector(`#${targetId}`);
-    className += message === 'more' ? 'modal-active' : '';
 
-    console.log(className);
-    target.className = className
+    target.classList.toggle('modal-active')
   })
 })
 

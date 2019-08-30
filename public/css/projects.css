@@ -87,15 +87,17 @@
 
           .project-details {
             display: flex;
+            margin-bottom: 30px;
+            width: 85%;
 
             .outer-wrapper {
               max-width: 690px;
-              margin-right: 65px;
             }
 
             span.monty-link {
               margin-top: 5px;
               align-self: flex-start;
+              margin-left: auto;
             }
           }
 
@@ -108,6 +110,7 @@
               left: 0;
 
               .carousel-slide {
+                width: 85%;
                 opacity: 1; // delete
 
                 &:first-of-type {
@@ -272,14 +275,18 @@
 
           .project-contents {
             .project-details {
+              width: 100%;
               margin: 45px 0;
               padding: 0 15px;
               flex-flow: column nowrap;
               order: 2;
 
               .outer-wrapper {
-                margin-right: 0;
                 margin-bottom: 15px;
+              }
+
+              span.monty-link {
+                margin-left: 0;
               }
             }
 
@@ -298,6 +305,13 @@
                   line-height: 1.4;
                 }
               }
+
+              .carousel-init-wrapper {
+                .carousel-slide {
+                  width: 100%;
+                }
+              }
+
             }
           }
 
