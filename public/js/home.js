@@ -10,6 +10,7 @@ import {
   findParent,
   buildTimeline,
   mobileNavHandler,
+  slickHelper,
 } from '../helpers/util.js'
 
 /**
@@ -234,108 +235,6 @@ const homeController = new ScrollMagic.Controller({
 });
 
 /**
- * Carousel Handler
- */
-
-class Carousel {
-  constructor(element) {
-    const _ = this;
-
-    _.sliderNode = document.querySelector(element);
-    _.nextNode = document.querySelector('#nextSlide');
-    _.dotsNode = null;
-
-    _.slides = null;
-    _.dots = null;
-
-    _.slideBaseClass = null;
-    _.dotsBaseClass = null;
-
-    _.slidesCount = 0;
-    _.currentSlide = 0;
-  }
-
-  init() {
-    const _ = this;
-
-    _.slides = sliceArray(_.sliderNode.children)
-    _.slides.forEach((node, index) => {
-      node.setAttribute('data-slide-index', index)
-    })
-    _.slidesCount = _.slides.length;
-
-    _.slideBaseClass = 'carousel-slide';
-    _.slides[0].className = `${_.slideBaseClass} active`;
-    _.dotsBaseClass = 'carousel-dots';
-
-    _.buildDots();
-
-    _.dotsNode.addEventListener('click', e => {
-      carousel.changeSlide(e.target)
-    })
-    _.nextNode.addEventListener('click', e => {
-      let target = e.target;
-      if (!target.getAttribute('data-message')) {
-        target = findParent(target, 'nextSlide')
-      }
-      carousel.changeSlide(target)
-    })
-  }
-
-  buildDots() {
-    const _ = this;
-    let dotsWrapper;
-
-    dotsWrapper = document.createElement('ul')
-    dotsWrapper.className = 'carousel-dots-wrapper';
-
-    for (let index = 0; index < _.slidesCount; index++) {
-      let dot = document.createElement('li')
-      dot.className = 'carousel-dots';
-      dot.setAttribute('data-slide-index', index)
-      dot.setAttribute('data-message', 'index')
-      dotsWrapper.appendChild(dot);
-    }
-
-    dotsWrapper.firstElementChild.className += ' active';
-    _.dots = sliceArray(dotsWrapper.children)
-    _.dotsNode = dotsWrapper
-    _.sliderNode.appendChild(dotsWrapper);
-  }
-
-  changeSlide(target) {
-    const _ = this;
-    const querySlide = _.currentSlide + 1;
-    let dataMessage = target.getAttribute('data-message');
-    let nextSlide;
-
-    switch (dataMessage) {
-      case 'next':
-        nextSlide = (querySlide == _.slidesCount) ? 0 : querySlide;
-        break;
-
-      case 'index':
-        nextSlide = parseInt(target.getAttribute('data-slide-index'));
-        break;
-
-      default:
-        return;
-    }
-
-    _.slides[_.currentSlide].className = _.slideBaseClass;
-    _.slides[nextSlide].className = `${_.slideBaseClass} active`;
-    _.dots[_.currentSlide].className = _.dotsBaseClass
-    _.dots[nextSlide].className = `${_.dotsBaseClass} active`;
-
-    _.currentSlide = nextSlide
-  }
-}
-
-const carousel = new Carousel('#home-carousel')
-
-carousel.init();
-
-/**
  * Event Listeners
  */
 
@@ -364,6 +263,7 @@ document.querySelector('#header-sideways').addEventListener('click', e => {
 
 window.addEventListener('load', function(e) {
   handleHeaderSideways()
+  slickHelper('#home-carousel');
 })
 
 hotReload();

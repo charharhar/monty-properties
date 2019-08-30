@@ -4,7 +4,9 @@
   section.section {
     .section-content {
       .content-wrapper {
-
+        &.content-fill-100 {
+          flex-flow: column nowrap;
+        }
       }
     }
 
@@ -29,6 +31,10 @@
 
     &.projects-section-two {
       padding: 0;
+
+      .section-content .content-wrapper  > *:not(:last-child) {
+        margin-bottom: 80px;
+      }
 
       .project-wrapper {
         position: relative;
@@ -102,26 +108,22 @@
           }
 
           .carousel-wrapper {
-            position: relative;
+            .slick-slider {
+              .slick-list {
+                padding: 0 15% 0 0 !important;
+              }
+
+              .slick-dots,
+              .monty-link-chevron.nextSlide {
+                right: 15%;
+                margin-right: 30px;
+              }
+            }
 
             .carousel-init-wrapper {
               position: relative;
-              top: 0;
-              left: 0;
-
-              .carousel-slide {
-                width: 85%;
-                opacity: 1; // delete
-
-                &:first-of-type {
-                  position: relative;
-                }
-
-                figure {
-                  position: relative;
-                  height: auto;
-                }
-              }
+              width: 100%;
+              overflow: hidden;
             }
 
             .carousel-more-modal {
@@ -292,6 +294,23 @@
 
             .carousel-wrapper {
               position: initial;
+
+              .slick-slider {
+                .slick-list {
+                  padding: 0 0 0 0 !important;
+                }
+
+                .slick-dots {
+                  right: auto;
+                  left: 25px;
+                  margin-right: 0;
+                }
+
+                .monty-link-chevron.nextSlide {
+                  right: 25px;
+                  margin-right: 0;
+                }
+              }
 
               .carousel-more-modal {
                 right: 0;

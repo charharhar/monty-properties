@@ -4,6 +4,7 @@ import {
   hotReload,
   sliceArray,
   mobileNavHandler,
+  slickHelper,
 } from '../helpers/util.js'
 
 /**
@@ -17,6 +18,7 @@ import {
 /**
  * Event Listeners
  */
+const carouselInitWrappers = sliceArray(document.querySelectorAll('.carousel-init-wrapper'))
 const modalControl = sliceArray(document.querySelectorAll('.modal-control'))
 
 modalControl.forEach(node => {
@@ -31,6 +33,10 @@ modalControl.forEach(node => {
 })
 
 window.addEventListener('load', function(e) {
+  carouselInitWrappers.forEach(node => {
+    const nodeId = node.getAttribute('id');
+    slickHelper(`#${nodeId}`);
+  })
 })
 
 hotReload();

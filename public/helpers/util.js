@@ -66,3 +66,19 @@ export function scrollTo(e, elem) {
   }, 1000);
 }
 
+export function slickHelper(target, options = {}) {
+  const slickOptions = Object.assign({
+    slidesToShow: 1,
+    centerMode: true,
+    centerPadding: '0',
+    arrows: true,
+    fade: false,
+    prevArrow: null,
+    nextArrow: '<span class="monty-link-chevron nextSlide" id="nextSlide" data-message="next"><span class="chevron-wrapper"><span class="chevron"></span></span></span>',
+    dots: true,
+  }, options)
+
+  const slider = $(target).slick(slickOptions)
+
+  return slider;
+}

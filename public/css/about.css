@@ -1,5 +1,7 @@
 @import 'global';
 
+.media-overlay {display:none!important;}
+
 .wrapper {
   section.section {
     .section-content {
@@ -27,6 +29,7 @@
             left: 0;
             transform: translateY(-50%);
             margin-left: 15px;
+            overflow: hidden;
 
             &:before {
               content: '';
@@ -34,12 +37,24 @@
               width: 100%;
               padding-top: 90%;
             }
+
+            .monty-link-chevron,
+            .slick-dots {
+              display: none;
+            }
           }
         }
       }
     }
 
     div.carousel-wrapper {
+      &#about-context-carousel {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+      }
+
       .carousel-slide {
         .carousel-context {
           display: flex;
