@@ -118,6 +118,17 @@
                 right: 15%;
                 margin-right: 30px;
               }
+
+              .slick-slide {
+                img {
+                  transform: scaleY(.9);
+                  transform-origin: 0 100%;
+                }
+
+                &.slick-center img {
+                  transform: scaleY(1);
+                }
+              }
             }
 
             .carousel-init-wrapper {
