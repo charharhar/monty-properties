@@ -1,7 +1,5 @@
 @import 'global';
 
-.media-overlay {display:none!important;}
-
 .wrapper {
   section.section {
     .section-content {
@@ -74,8 +72,8 @@
 
             &.context-header {
               font-weight: 600;
-              font-size: 20px;
-              margin: 20px 0;
+              font-size: 18px;
+              margin-bottom: 20px;
             }
 
             &.context-body {

@@ -7,10 +7,9 @@ import {
   scrollTo,
   hotReload,
   sliceArray,
-  findParent,
-  buildTimeline,
   mobileNavHandler,
   slickHelper,
+  timelineHelper,
 } from '../helpers/util.js'
 
 /**
@@ -46,193 +45,158 @@ function handleHeaderSideways() {
  */
 
 const timelineMaster = {
-  helpers: {
-    newTimeline: () => new TimelineMax(),
-    tweenText: function(text) {
-      const textTween = TweenMax.fromTo(text, 1.3, { yPercent: 100 }, { yPercent: 0, ease: Power3.easeInOut })
+  helpers: timelineHelper,
+  timelineA: function() {
+    const {
+      helpers: {
+        tweenText,
+        tweenMedia,
+        tweenAnchor,
+        newTimeline,
+      }
+    } = timelineMaster;
+    const timeline = new TimelineMax();
 
-      return textTween
-    },
-    tweenAnchor: function(text, chevron) {
-      const tweenArray = []
-      const textTween = TweenMax.fromTo(text, .5, { yPercent: 100 }, { yPercent: 0, ease: Power3.easeInOut })
-      const chevronTween = TweenMax.fromTo(chevron, .5, { yPercent: 100 }, { yPercent: 0, ease: Power3.easeInOut })
-      let underlineTween;
+    timeline
+      .add(tweenText('#textA1'), 'labelA')
+      .add(tweenText('#textA2'), 'labelA+=.4')
+      .add(tweenText('#textA3'), 'labelA+=.8')
+      .add(tweenAnchor(
+        '#anchorA4 .monty-link-text',
+        '#anchorA4 .monty-link-chevron',
+        '#anchorA4 .monty-link-underline'), 'labelA+=1.2', 'sequence')
 
-      return [textTween, chevronTween];
-    },
-    tweenMedia: function(overlay, media) {
-      const overlayTween = TweenMax.fromTo(overlay, 1.3, { xPercent: -101 }, { xPercent: 101, ease: Power3.easeInOut });
-      const mediaTween = TweenMax.fromTo(media, 1, { autoAlpha: 0 }, { autoAlpha: 1 });
-
-      return [overlayTween, mediaTween];
-    },
-  },
-  timelineA: {
-    init: function() {
-      const {
-        helpers: {
-          tweenText,
-          tweenMedia,
-          tweenAnchor,
-          newTimeline,
-        }
-      } = timelineMaster;
-      const timeline = newTimeline();
-
-      timeline
-        .add(tweenText('#textA1'), 'labelA')
-        .add(tweenText('#textA2'), 'labelA+=.4')
-        .add(tweenText('#textA3'), 'labelA+=.8')
-        .add(tweenAnchor(
-          '#anchorA4 .monty-link-text',
-          '#anchorA4 .monty-link-chevron',
-          '#anchorA4 .monty-link-underline'), 'labelA+=1.2', 'sequence')
-
-      return timeline;
-    },
+    return timeline;
   },
 
-  timelineB: {
-    init: function() {
-      const {
-        helpers: {
-          tweenText,
-          tweenMedia,
-          tweenAnchor,
-          newTimeline,
-        }
-      } = timelineMaster;
-      const timeline = newTimeline();
+  timelineB: function() {
+    const {
+      helpers: {
+        tweenText,
+        tweenMedia,
+        tweenAnchor,
+        newTimeline,
+      }
+    } = timelineMaster;
+    const timeline = new TimelineMax();
 
-      timeline
-        .add(tweenMedia(
-          '#mediaB1 .media-overlay',
-          '#mediaB1 .media'), 'labelB')
-        .add(tweenText('#textB2'), 'labelB+=.4')
-        .add(tweenText('#textB3'), 'labelB+=.8')
-        .add(tweenAnchor(
-          '#anchorB4 .monty-link-text',
-          '#anchorB4 .monty-link-chevron',
-          '#anchorB4 .monty-link-underline'), 'labelB+=1.2', 'sequence')
+    timeline
+      .add(tweenMedia(
+        '#mediaB1 .media-overlay',
+        '#mediaB1 .media'), 'labelB')
+      .add(tweenText('#textB2'), 'labelB+=.4')
+      .add(tweenText('#textB3'), 'labelB+=.8')
+      .add(tweenAnchor(
+        '#anchorB4 .monty-link-text',
+        '#anchorB4 .monty-link-chevron',
+        '#anchorB4 .monty-link-underline'), 'labelB+=1.2', 'sequence')
 
-      return timeline;
-    },
+    return timeline;
   },
 
-  timelineC: {
-    init: function() {
-      const {
-        helpers: {
-          tweenText,
-          tweenMedia,
-          tweenAnchor,
-          newTimeline,
-        }
-      } = timelineMaster;
-      const timeline = newTimeline();
+  timelineC: function() {
+    const {
+      helpers: {
+        tweenText,
+        tweenMedia,
+        tweenAnchor,
+        newTimeline,
+      }
+    } = timelineMaster;
+    const timeline = new TimelineMax();
 
-      timeline
-        .add(tweenMedia(
-          '#mediaC1 .media-overlay',
-          '#mediaC1 .media'), 'labelC')
-        .add(tweenText('#textC2'), 'labelC+=.4')
-        .add(tweenText('#textC3'), 'labelC+=.8')
-        .add(tweenAnchor(
-          '#anchorC4 .monty-link-text',
-          '#anchorC4 .monty-link-chevron',
-          '#anchorC4 .monty-link-underline'), 'labelC+=1.2', 'sequence')
+    timeline
+      .add(tweenMedia(
+        '#mediaC1 .media-overlay',
+        '#mediaC1 .media'), 'labelC')
+      .add(tweenText('#textC2'), 'labelC+=.4')
+      .add(tweenText('#textC3'), 'labelC+=.8')
+      .add(tweenAnchor(
+        '#anchorC4 .monty-link-text',
+        '#anchorC4 .monty-link-chevron',
+        '#anchorC4 .monty-link-underline'), 'labelC+=1.2', 'sequence')
 
-      return timeline;
-    },
+    return timeline;
   },
 
-  timelineD: {
-    init: function() {
-      const {
-        helpers: {
-          tweenText,
-          tweenMedia,
-          tweenAnchor,
-          newTimeline,
-        }
-      } = timelineMaster;
-      const timeline = newTimeline();
+  timelineD: function() {
+    const {
+      helpers: {
+        tweenText,
+        tweenMedia,
+        tweenAnchor,
+        newTimeline,
+      }
+    } = timelineMaster;
+    const timeline = new TimelineMax();
 
-      timeline
-        .add(tweenMedia(
-          '#mediaD1 .media-overlay',
-          '#mediaD1 .media'), 'labelD')
-        .add(tweenText('#textD2'), 'labelD+=.4')
-        .add(tweenText('#textD3'), 'labelD+=.8')
-        .add(tweenAnchor(
-          '#anchorD4 .monty-link-text',
-          '#anchorD4 .monty-link-chevron',
-          '#anchorD4 .monty-link-underline'), 'labelD+=1.2', 'sequence')
+    timeline
+      .add(tweenMedia(
+        '#mediaD1 .media-overlay',
+        '#mediaD1 .media'), 'labelD')
+      .add(tweenText('#textD2'), 'labelD+=.4')
+      .add(tweenText('#textD3'), 'labelD+=.8')
+      .add(tweenAnchor(
+        '#anchorD4 .monty-link-text',
+        '#anchorD4 .monty-link-chevron',
+        '#anchorD4 .monty-link-underline'), 'labelD+=1.2', 'sequence')
 
-      return timeline;
-    },
+    return timeline;
   },
 
-  timelineL: {
-    init: function() {
-      const {
-        helpers: {
-          tweenText,
-          tweenMedia,
-          tweenAnchor,
-          newTimeline,
-        }
-      } = timelineMaster;
-      const timeline = newTimeline();
+  timelineL: function() {
+    const {
+      helpers: {
+        tweenText,
+        tweenMedia,
+        tweenAnchor,
+        newTimeline,
+      }
+    } = timelineMaster;
+    const timeline = new TimelineMax();
 
-      const sidewaysTextTween = TweenMax.fromTo('#header-sideways .scrollhint-underline', 1, { height: 0 }, { height: '100%' })
-      const heroLineTween = TweenMax.fromTo('.hero-content .hero-border', .6, { height: 0, transformOrigin: '0 0'  }, { height: '100%' })
-      const heroTextTween = TweenMax.fromTo('.hero-content h1', 1, { xPercent: -100 }, { xPercent: 0 });
+    const sidewaysTextTween = TweenMax.fromTo('#header-sideways .scrollhint-underline', 1, { height: 0 }, { height: '100%' })
+    const heroLineTween = TweenMax.fromTo('.hero-content .hero-border', .6, { height: 0, transformOrigin: '0 0'  }, { height: '100%' })
+    const heroTextTween = TweenMax.fromTo('.hero-content h1', 1, { xPercent: -100 }, { xPercent: 0 });
 
-      timeline
-        .add([heroLineTween, sidewaysTextTween], 'labelL')
-        .add(tweenAnchor(
-          '#header-sideways .monty-link-text',
-          '#header-sideways .monty-link-chevron'), 'labelL+=.4', 'sequence')
-        .add(heroTextTween, 'labelL+=.4')
-        .add(tweenAnchor(
-          '#anchorL1 .monty-link-text',
-          '#anchorL1 .monty-link-chevron',
-          '#anchorL1 .monty-link-underline'), 'labelL+=.8', 'sequence')
+    timeline
+      .add([heroLineTween, sidewaysTextTween], 'labelL')
+      .add(tweenAnchor(
+        '#header-sideways .monty-link-text',
+        '#header-sideways .monty-link-chevron'), 'labelL+=.4', 'sequence')
+      .add(heroTextTween, 'labelL+=.4')
+      .add(tweenAnchor(
+        '#anchorL1 .monty-link-text',
+        '#anchorL1 .monty-link-chevron',
+        '#anchorL1 .monty-link-underline'), 'labelL+=.8', 'sequence')
 
-      return timeline;
-    }
+    return timeline;
   },
 
-  timelineF: {
-    init: function() {
-      const {
-        helpers: {
-          tweenText,
-          tweenMedia,
-          tweenAnchor,
-          newTimeline,
-        }
-      } = timelineMaster;
-      const timeline = newTimeline();
+  timelineF: function() {
+    const {
+      helpers: {
+        tweenText,
+        tweenMedia,
+        tweenAnchor,
+        newTimeline,
+      }
+    } = timelineMaster;
+    const timeline = new TimelineMax();
 
-      const sidewaysTextTween = TweenMax.fromTo('#footer-sideways .scrollhint-underline', 1, { height: 0 }, { height: '100%' })
+    const sidewaysTextTween = TweenMax.fromTo('#footer-sideways .scrollhint-underline', 1, { height: 0 }, { height: '100%' })
 
-      timeline
-        .add(sidewaysTextTween, 'labelF')
-        .add(tweenAnchor(
-          '#footer-sideways .monty-link-text',
-          '#footer-sideways .monty-link-chevron'), 'labelF+=.4', 'sequence')
+    timeline
+      .add(sidewaysTextTween, 'labelF')
+      .add(tweenAnchor(
+        '#footer-sideways .monty-link-text',
+        '#footer-sideways .monty-link-chevron'), 'labelF+=.4', 'sequence')
 
-      return timeline;
-    }
+    return timeline;
   },
 }
 
-const homeController = new ScrollMagic.Controller({
-
-});
+const controller = new ScrollMagic.Controller();
 
 /**
  * Event Listeners
@@ -241,17 +205,6 @@ const homeController = new ScrollMagic.Controller({
 window.addEventListener('resize', e => {
   handleHeaderSideways();
 })
-
-window.onload = function() {
-  homeController.addScene([
-    new ScrollMagic.Scene({ triggerElement: '.home-section-one' }).setTween(timelineMaster.timelineA.init()),
-    new ScrollMagic.Scene({ triggerElement: '.home-section-two' }).setTween(timelineMaster.timelineB.init()),
-    new ScrollMagic.Scene({ triggerElement: '.home-section-three' }).setTween(timelineMaster.timelineC.init()),
-    new ScrollMagic.Scene({ triggerElement: '.home-section-four' }).setTween(timelineMaster.timelineD.init()),
-    new ScrollMagic.Scene({ triggerElement: '.home-section-header' }).setTween(timelineMaster.timelineL.init()),
-    new ScrollMagic.Scene({ triggerElement: '.home-section-four' }).setTween(timelineMaster.timelineF.init()),
-  ])
-}
 
 document.querySelector('#footer-sideways').addEventListener('click', e => {
   scrollTo(e, '.home-section-header')
@@ -262,6 +215,15 @@ document.querySelector('#header-sideways').addEventListener('click', e => {
 })
 
 window.addEventListener('load', function(e) {
+  controller.addScene([
+    new ScrollMagic.Scene({ triggerElement: '.home-section-one' }).setTween(timelineMaster.timelineA()),
+    new ScrollMagic.Scene({ triggerElement: '.home-section-two' }).setTween(timelineMaster.timelineB()),
+    new ScrollMagic.Scene({ triggerElement: '.home-section-three' }).setTween(timelineMaster.timelineC()),
+    new ScrollMagic.Scene({ triggerElement: '.home-section-four' }).setTween(timelineMaster.timelineD()),
+    new ScrollMagic.Scene({ triggerElement: '.home-section-header' }).setTween(timelineMaster.timelineL()),
+    new ScrollMagic.Scene({ triggerElement: '.home-section-four' }).setTween(timelineMaster.timelineF()),
+  ])
+
   handleHeaderSideways()
   slickHelper('#home-carousel');
 })

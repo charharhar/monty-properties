@@ -1,6 +1,15 @@
 @import 'global';
 
 .wrapper {
+  section.section {
+    div.carousel-wrapper {
+      .carousel-slide {
+        span.carousel-caption {
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
 }
 
 @media (max-width: 768px) {

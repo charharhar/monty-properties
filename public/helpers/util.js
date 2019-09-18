@@ -82,3 +82,25 @@ export function slickHelper(target, options = {}) {
 
   return slider;
 }
+
+export const timelineHelper = {
+  tweenText: function(text) {
+    const textTween = TweenMax.fromTo(text, 1.3, { yPercent: 100 }, { yPercent: 0, ease: Power3.easeInOut })
+
+    return textTween
+  },
+  tweenAnchor: function(text, chevron) {
+    const tweenArray = []
+    const textTween = TweenMax.fromTo(text, .5, { yPercent: 100 }, { yPercent: 0, ease: Power3.easeInOut })
+    const chevronTween = TweenMax.fromTo(chevron, .5, { yPercent: 100 }, { yPercent: 0, ease: Power3.easeInOut })
+    let underlineTween;
+
+    return [textTween, chevronTween];
+  },
+  tweenMedia: function(overlay, media) {
+    const overlayTween = TweenMax.fromTo(overlay, 1.3, { xPercent: -101 }, { xPercent: 101, ease: Power3.easeInOut });
+    const mediaTween = TweenMax.fromTo(media, 1, { autoAlpha: 0 }, { autoAlpha: 1 });
+
+    return [overlayTween, mediaTween];
+  },
+}

@@ -47,22 +47,27 @@
 
             &.context-header {
               display: block;
-              font-weight: 600;
-              font-size: 20px;
               margin-bottom: 20px;
+
+              .body-content {
+                font-weight: 600;
+                font-size: 20px;
+              }
             }
 
-            &.context-body {
+            &.context-body .body-content {
               color: $main-black;
-              line-height: 1.5;
               margin-bottom: auto;
             }
           }
 
-          figure {
+          div.media-content {
             position: relative;
             display: block;
             max-width: 150px;
+            left: auto;
+            height: auto;
+            overflow: hidden;
           }
 
           .context-inner {
@@ -74,7 +79,7 @@
               left: 20px;
             }
 
-            figure {
+            div.media-content {
               position: absolute;
               top: 20px;
               right: 20px;
@@ -166,22 +171,22 @@
               }
 
               &.context-header {
-                font-size: 20px;
-                margin-bottom: 0;
+                margin: auto 0 20px 10px;
                 align-self: flex-end;
-                margin-top: auto;
-                margin-bottom: 20px;
-                margin-left: 10px;
+
+                .body-content {
+                  font-size: 20px;
+                }
               }
 
-              &.context-body {
+              &.context-body .body-content {
                 line-height: 1.5;
               }
             }
 
-            figure {
+            div.media-content {
               width: 150px;
-              height: 150px;
+              height: auto;
             }
 
             .context-inner {
@@ -194,7 +199,7 @@
                 left: 0;
               }
 
-              figure {
+              div.media-content {
                 position: relative;
                 top: 0;
                 right: 0;

@@ -58,8 +58,11 @@
             }
 
             &.project-title {
-              color: $monty-blue;
-              font-weight: bold;
+              span {
+                color: $monty-blue;
+                font-weight: bold;
+                line-height: normal
+              }
             }
 
             &.project-location {
@@ -89,15 +92,14 @@
             flex-flow: column nowrap;
           }
 
-          .media-overlay{ display: none;} // delete
-
           .project-details {
             display: flex;
             margin-bottom: 30px;
             width: 85%;
 
             .outer-wrapper {
-              max-width: 690px;
+              max-width: 630px;
+              margin-right: 40px;
             }
 
             span.monty-link {
@@ -144,7 +146,7 @@
               height: 100%;
               width: calc(40% + 30px);
               background-color: $monty-blue;
-              padding: 60px;
+              padding: 50px;
               z-index: 10;
               display: flex;
               flex-flow: column nowrap;
@@ -333,6 +335,8 @@
 
                 p.carousel-more-text {
                   line-height: 1.4;
+                  font-size: 13px;
+                  margin: auto;
                 }
               }
 
