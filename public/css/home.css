@@ -17,6 +17,7 @@
     .sideways-scrollhint {
       display: flex;
       right: 43px;
+      height: 270px !important;
     }
   }
 }

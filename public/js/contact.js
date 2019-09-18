@@ -15,7 +15,7 @@ const helpers = timelineHelper
  * Moible Nav Handler
  */
 const hamburger = document.querySelector('.hamburger');
-const mobileNavList = document.querySelector('.mobile-nav-list');
+const mobileNavList = document.querySelector('.main-navigation');
 
 mobileNavHandler(hamburger, mobileNavList);
 
