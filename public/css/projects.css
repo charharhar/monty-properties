@@ -127,6 +127,12 @@
                   transform-origin: 0 100%;
                 }
 
+                &.slick-current img,
+                &.slick-active img {
+                  opacity: 1;
+                  transform: scaleY(1);
+                }
+
                 &.slick-center img {
                   transform: scaleY(1);
                 }
