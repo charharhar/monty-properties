@@ -69,8 +69,8 @@ function configFactory(env, argv) {
 
     output: {
       path: path.join(appRoot, './dist'),
-      filename: 'js/[name].[chunkhash].js',
-      chunkFilename: 'js/[name].[chunkhash].js',
+      filename: 'js/[name].[hash].js',
+      chunkFilename: 'js/[name].[hash].js',
       publicPath: ifDev('http://localhost:3000/build/', '/'),
     },
 
@@ -214,7 +214,7 @@ function configFactory(env, argv) {
 
       ifProd(() =>
         new MiniCssExtractPlugin({
-          filename: 'css/[name].[chunkhash].css',
+          filename: 'css/[name].[hash].css',
           chunkFilename: '[id].css',
         })
       )
