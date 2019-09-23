@@ -59,10 +59,7 @@ const timelineMaster = {
         tweenText('#philB1 .context-header .body-text'),
         tweenText('#philB1 .context-body .body-text'),
       ], 'labelB1')
-      .add(tweenMedia(
-        '#mediaB1 .media-overlay',
-        '#mediaB1 .media'), 'labelB1')
-
+      .fromTo('#mediaB1', 1, { autoAlpha: 0, y: 100 }, { autoAlpha: 1, y: 0 }, 'labelB1')
 
     return timeline;
   },
@@ -84,9 +81,7 @@ const timelineMaster = {
         tweenText('#philB2 .context-header .body-text'),
         tweenText('#philB2 .context-body .body-text'),
       ], 'labelB2')
-      .add(tweenMedia(
-        '#mediaB2 .media-overlay',
-        '#mediaB2 .media'), 'labelB2')
+      .fromTo('#mediaB2', 1, { autoAlpha: 0, y: 100 }, { autoAlpha: 1, y: 0 }, 'labelB2')
 
     return timeline;
   },
@@ -108,9 +103,7 @@ const timelineMaster = {
         tweenText('#philB3 .context-header .body-text'),
         tweenText('#philB3 .context-body .body-text'),
       ], 'labelB3')
-      .add(tweenMedia(
-        '#mediaB3 .media-overlay',
-        '#mediaB3 .media'), 'labelB3')
+      .fromTo('#mediaB3', 1, { autoAlpha: 0, y: 100 }, { autoAlpha: 1, y: 0 }, 'labelB3')
 
     return timeline;
   },
@@ -128,8 +121,8 @@ const timelineMaster = {
 
     timeline
       .add([
-        TweenMax.fromTo('#projects-anchor', 1, { autoAlpha: 0, x: -100, y: -100 }, { autoAlpha: 1, x: 0, y: 0 }),
-        TweenMax.fromTo('#contact-anchor', 1, { autoAlpha: 0, x: 100, y: 100 }, { autoAlpha: 1, x: 0, y: 0 })
+        TweenMax.fromTo('#projects-anchor', 1, { autoAlpha: 0, y: 100 }, { autoAlpha: 1, y: 0 }),
+        TweenMax.fromTo('#contact-anchor', 1, { autoAlpha: 0, y: 100 }, { autoAlpha: 1, y: 0 })
       ], 'labelCTA')
       .add(tweenText('#textCTA2'), 'labelCTA+=.5')
       .add(tweenText('#textCTA3'), 'labelCTA+=.5')
@@ -146,7 +139,9 @@ const timelineMaster = {
   },
 }
 
-const controller = new ScrollMagic.Controller();
+const controller = new ScrollMagic.Controller({
+  globalSceneOptions: { reverse: false }
+});
 
 /**
  * Event Listeners
@@ -159,7 +154,7 @@ window.addEventListener('load', function(e) {
     new ScrollMagic.Scene({ triggerElement: '#philB3' }).setTween(timelineMaster.timelineB3()),
     new ScrollMagic.Scene({
       triggerElement: '.cta-section .content-wrapper',
-      triggerHook: 1,
+      triggerHook: .7,
     }).setTween(timelineMaster.timelineCTA()),
   ])
 })

@@ -196,7 +196,9 @@ const timelineMaster = {
   },
 }
 
-const controller = new ScrollMagic.Controller();
+const controller = new ScrollMagic.Controller({
+  // globalSceneOptions: { reverse: false }
+});
 
 /**
  * Event Listeners
@@ -216,12 +218,17 @@ document.querySelector('#header-sideways').addEventListener('click', e => {
 
 window.addEventListener('load', function(e) {
   controller.addScene([
-    new ScrollMagic.Scene({ triggerElement: '.home-section-one' }).setTween(timelineMaster.timelineA()),
-    new ScrollMagic.Scene({ triggerElement: '.home-section-two' }).setTween(timelineMaster.timelineB()),
-    new ScrollMagic.Scene({ triggerElement: '.home-section-three' }).setTween(timelineMaster.timelineC()),
-    new ScrollMagic.Scene({ triggerElement: '.home-section-four' }).setTween(timelineMaster.timelineD()),
-    new ScrollMagic.Scene({ triggerElement: '.home-section-header' }).setTween(timelineMaster.timelineL()),
-    new ScrollMagic.Scene({ triggerElement: '.home-section-four' }).setTween(timelineMaster.timelineF()),
+    new ScrollMagic.Scene({ reverse: false, triggerElement: '.home-section-one' }).setTween(timelineMaster.timelineA()),
+    new ScrollMagic.Scene({ reverse: false, triggerElement: '.home-section-two' }).setTween(timelineMaster.timelineB()),
+    new ScrollMagic.Scene({ reverse: false, triggerElement: '.home-section-three' }).setTween(timelineMaster.timelineC()),
+    new ScrollMagic.Scene({ reverse: false, triggerElement: '.home-section-four' }).setTween(timelineMaster.timelineD()),
+    new ScrollMagic.Scene({ reverse: false, triggerElement: '.home-section-header' }).setTween(timelineMaster.timelineL()),
+    new ScrollMagic.Scene({ reverse: false, triggerElement: '.home-section-four' }).setTween(timelineMaster.timelineF()),
+
+    new ScrollMagic.Scene({
+      triggerElement: '.home-section-three',
+      reverse: true,
+    }).setClassToggle('.main-navigation', 'sticky')
   ])
 
   handleHeaderSideways()

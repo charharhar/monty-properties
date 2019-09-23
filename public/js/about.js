@@ -82,7 +82,7 @@ const timelineMaster = {
       .add(tweenMedia(
         '#mediaC2 .media-overlay',
         '#mediaC2 .media'), 'labelC+=.4')
-      .fromTo('#mediaC3', .5, { autoAlpha: 0, x: -50 }, { autoAlpha: 1, x: 0 })
+      .fromTo('#mediaC3', .5, { autoAlpha: 0, marginTop: 100 }, { autoAlpha: 1, marginTop: 0 })
 
     return timeline;
   },
@@ -100,8 +100,8 @@ const timelineMaster = {
 
     timeline
       .add([
-        TweenMax.fromTo('#projects-anchor', 1, { autoAlpha: 0, x: -100, y: -100 }, { autoAlpha: 1, x: 0, y: 0 }),
-        TweenMax.fromTo('#contact-anchor', 1, { autoAlpha: 0, x: 100, y: 100 }, { autoAlpha: 1, x: 0, y: 0 })
+        TweenMax.fromTo('#projects-anchor', 1, { autoAlpha: 0, y: 100 }, { autoAlpha: 1, y: 0 }),
+        TweenMax.fromTo('#contact-anchor', 1, { autoAlpha: 0, y: 100 }, { autoAlpha: 1, y: 0 })
       ], 'labelCTA')
       .add(tweenText('#textCTA2'), 'labelCTA+=.5')
       .add(tweenText('#textCTA3'), 'labelCTA+=.5')
@@ -118,7 +118,9 @@ const timelineMaster = {
   },
 }
 
-const controller = new ScrollMagic.Controller();
+const controller = new ScrollMagic.Controller({
+  globalSceneOptions: { reverse: false }
+});
 
 /**
  * Event Listeners
@@ -134,7 +136,7 @@ window.addEventListener('load', function(e) {
     new ScrollMagic.Scene({ triggerElement: '.about-section-three' }).setTween(timelineMaster.timelineC()),
     new ScrollMagic.Scene({
       triggerElement: '.cta-section .content-wrapper',
-      triggerHook: 1,
+      triggerHook: .7,
     }).setTween(timelineMaster.timelineCTA()),
   ])
 

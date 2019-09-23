@@ -122,6 +122,13 @@
 @media (max-width: 768px) {
   .wrapper {
     section.section {
+      .slick-slider {
+        .slick-dots {
+          bottom: auto;
+          top: 25px;
+        }
+      }
+
       .section-content {
         .content-wrapper {
           &.content-even {
@@ -138,11 +145,15 @@
 
             .overlap-content {
               position: relative;
-              top: -15%;
+              top: -7%;
               transform: translateX(-50%);
               left: 50%;
               margin: 0;
-              width: 80%;
+              width: 90%;
+
+              &:before {
+                padding-top: 140%;
+              }
             }
           }
         }

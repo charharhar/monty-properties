@@ -13,10 +13,11 @@
         span.body-text {
           font-weight: bold;
           text-align: center;
-          max-width: 600px;
+          max-width: 700px;
           margin: 0 auto;
           line-height: 1.4;
           color: #777;
+          font-size: 20px;
         }
       }
     }
@@ -61,7 +62,7 @@
             }
           }
 
-          div.media-content {
+          figure.media {
             position: relative;
             display: block;
             max-width: 150px;
@@ -79,7 +80,7 @@
               left: 20px;
             }
 
-            div.media-content {
+            figure.media {
               position: absolute;
               top: 20px;
               right: 20px;
@@ -113,6 +114,12 @@
 
       &.philosophy-section-one {
         padding-top: 60px;
+
+        span.body-content {
+          span.body-text {
+            font-size: 15px;
+          }
+        }
       }
 
       &.philosophy-section-two {
@@ -184,7 +191,7 @@
               }
             }
 
-            div.media-content {
+            figure.media {
               width: 150px;
               height: auto;
             }
@@ -199,7 +206,7 @@
                 left: 0;
               }
 
-              div.media-content {
+              figure.media {
                 position: relative;
                 top: 0;
                 right: 0;
