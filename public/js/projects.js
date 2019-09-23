@@ -175,9 +175,7 @@ const timelineMaster = {
   },
 }
 
-const controller = new ScrollMagic.Controller({
-  globalSceneOptions: { reverse: false }
-});
+const controller = new ScrollMagic.Controller();
 
 /**
  * Event Listeners
@@ -198,14 +196,32 @@ modalControl.forEach(node => {
 
 window.addEventListener('load', function(e) {
   controller.addScene([
-    new ScrollMagic.Scene({ triggerElement: '.projects-section-one' }).setTween(timelineMaster.timelineA()),
-    new ScrollMagic.Scene({ triggerElement: '#project-wrapper-1' }).setTween(timelineMaster.timelineB()),
-    new ScrollMagic.Scene({ triggerElement: '#project-wrapper-2' }).setTween(timelineMaster.timelineC()),
-    new ScrollMagic.Scene({ triggerElement: '#project-wrapper-3' }).setTween(timelineMaster.timelineD()),
     new ScrollMagic.Scene({
+      reverse: false,
+      triggerElement: '.projects-section-one',
+    }).setTween(timelineMaster.timelineA()),
+    new ScrollMagic.Scene({
+      reverse: false,
+      triggerElement: '#project-wrapper-1',
+    }).setTween(timelineMaster.timelineB()),
+    new ScrollMagic.Scene({
+      reverse: false,
+      triggerElement: '#project-wrapper-2',
+    }).setTween(timelineMaster.timelineC()),
+    new ScrollMagic.Scene({
+      reverse: false,
+      triggerElement: '#project-wrapper-3',
+    }).setTween(timelineMaster.timelineD()),
+    new ScrollMagic.Scene({
+      reverse: false,
       triggerElement: '.cta-section .content-wrapper',
       triggerHook: .7,
     }).setTween(timelineMaster.timelineCTA()),
+
+    new ScrollMagic.Scene({
+      triggerElement: '#project-wrapper-3',
+      reverse: true,
+    }).setClassToggle('.main-navigation', 'sticky')
   ])
 
   carouselInitWrappers.forEach(node => {

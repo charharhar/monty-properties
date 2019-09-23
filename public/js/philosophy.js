@@ -139,23 +139,39 @@ const timelineMaster = {
   },
 }
 
-const controller = new ScrollMagic.Controller({
-  globalSceneOptions: { reverse: false }
-});
+const controller = new ScrollMagic.Controller();
 
 /**
  * Event Listeners
  */
 window.addEventListener('load', function(e) {
   controller.addScene([
-    new ScrollMagic.Scene({ triggerElement: '.philosophy-section-one' }).setTween(timelineMaster.timelineA()),
-    new ScrollMagic.Scene({ triggerElement: '#philB1' }).setTween(timelineMaster.timelineB1()),
-    new ScrollMagic.Scene({ triggerElement: '#philB2' }).setTween(timelineMaster.timelineB2()),
-    new ScrollMagic.Scene({ triggerElement: '#philB3' }).setTween(timelineMaster.timelineB3()),
     new ScrollMagic.Scene({
+      reverse: false,
+      triggerElement: '.philosophy-section-one',
+    }).setTween(timelineMaster.timelineA()),
+    new ScrollMagic.Scene({
+      reverse: false,
+      triggerElement: '#philB1',
+    }).setTween(timelineMaster.timelineB1()),
+    new ScrollMagic.Scene({
+      reverse: false,
+      triggerElement: '#philB2',
+    }).setTween(timelineMaster.timelineB2()),
+    new ScrollMagic.Scene({
+      reverse: false,
+      triggerElement: '#philB3',
+    }).setTween(timelineMaster.timelineB3()),
+    new ScrollMagic.Scene({
+      reverse: false,
       triggerElement: '.cta-section .content-wrapper',
       triggerHook: .7,
     }).setTween(timelineMaster.timelineCTA()),
+
+    new ScrollMagic.Scene({
+      reverse: true,
+      triggerElement: '#philB3',
+    }).setClassToggle('.main-navigation', 'sticky')
   ])
 })
 

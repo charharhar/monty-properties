@@ -118,9 +118,7 @@ const timelineMaster = {
   },
 }
 
-const controller = new ScrollMagic.Controller({
-  globalSceneOptions: { reverse: false }
-});
+const controller = new ScrollMagic.Controller();
 
 /**
  * Event Listeners
@@ -131,13 +129,28 @@ document.querySelector('#footer-sideways').addEventListener('click', e => {
 
 window.addEventListener('load', function(e) {
   controller.addScene([
-    new ScrollMagic.Scene({ triggerElement: '.about-section-one' }).setTween(timelineMaster.timelineA()),
-    new ScrollMagic.Scene({ triggerElement: '.about-section-two' }).setTween(timelineMaster.timelineB()),
-    new ScrollMagic.Scene({ triggerElement: '.about-section-three' }).setTween(timelineMaster.timelineC()),
     new ScrollMagic.Scene({
+      reverse: false,
+      triggerElement: '.about-section-one',
+    }).setTween(timelineMaster.timelineA()),
+    new ScrollMagic.Scene({
+      reverse: false,
+      triggerElement: '.about-section-two',
+    }).setTween(timelineMaster.timelineB()),
+    new ScrollMagic.Scene({
+      reverse: false,
+      triggerElement: '.about-section-three',
+    }).setTween(timelineMaster.timelineC()),
+    new ScrollMagic.Scene({
+      reverse: false,
       triggerElement: '.cta-section .content-wrapper',
       triggerHook: .7,
     }).setTween(timelineMaster.timelineCTA()),
+
+    new ScrollMagic.Scene({
+      reverse: true,
+      triggerElement: '.about-section-three',
+    }).setClassToggle('.main-navigation', 'sticky')
   ])
 
   slickHelper('#about-media-carousel', {
