@@ -149,18 +149,22 @@ window.addEventListener('load', function(e) {
     new ScrollMagic.Scene({
       reverse: false,
       triggerElement: '.philosophy-section-one',
+      triggerHook: .7,
     }).setTween(timelineMaster.timelineA()),
     new ScrollMagic.Scene({
       reverse: false,
       triggerElement: '#philB1',
+      triggerHook: .7,
     }).setTween(timelineMaster.timelineB1()),
     new ScrollMagic.Scene({
       reverse: false,
       triggerElement: '#philB2',
+      triggerHook: .7,
     }).setTween(timelineMaster.timelineB2()),
     new ScrollMagic.Scene({
       reverse: false,
       triggerElement: '#philB3',
+      triggerHook: .7,
     }).setTween(timelineMaster.timelineB3()),
     new ScrollMagic.Scene({
       reverse: false,

@@ -21,9 +21,10 @@
 
         span.body-text {
           text-align: center;
-          max-width: 710px;
+          max-width: 860px;
           margin: 0 auto;
-          line-height: 27px;
+          line-height: 1.4;
+          font-size: 22px;
           color: #777;
         }
       }
@@ -32,8 +33,28 @@
     &.projects-section-two {
       padding: 0;
 
-      .section-content .content-wrapper  > *:not(:last-child) {
-        margin-bottom: 80px;
+      .projects-intro {
+        padding: 0 30px;
+
+        h2 {
+          font-weight: 600;
+          font-size: 30px;
+          color: #777;
+        }
+      }
+
+      .section-content .content-wrapper {
+        .projects-intro {
+          margin-bottom: 50px;
+        }
+
+        .project-wrapper {
+          margin-bottom: 60px;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
       }
 
       .project-wrapper {
@@ -50,6 +71,7 @@
         .project-header {
           display: flex;
           flex-flow: row nowrap;
+          align-items: flex-start;
           margin-bottom: 30px;
 
           span {
@@ -213,6 +235,7 @@
           span.body-text {
             padding: 0 20px;
             text-align: left;
+            font-size: 18px;
           }
 
           span.body-header {
@@ -223,7 +246,7 @@
       }
 
       &.projects-section-two {
-        padding: 60px 0;
+        padding: 40px 0;
       }
     }
 
@@ -246,7 +269,7 @@
       }
 
       &.projects-section-one {
-        padding-top: 60px;
+        padding-top: 40px;
 
         span.body-content {
           span.body-text {
@@ -262,7 +285,18 @@
       }
 
       &.projects-section-two {
-        padding: 60px 0;
+        padding: 20px 0;
+
+        .section-content .content-wrapper {
+          .projects-intro {
+            padding: 0 15px;
+            margin-bottom: 30px;
+          }
+
+          .project-wrapper {
+            margin-bottom: 30px;
+          }
+        }
 
         .project-wrapper {
           .media-content {

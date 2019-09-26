@@ -199,18 +199,22 @@ window.addEventListener('load', function(e) {
     new ScrollMagic.Scene({
       reverse: false,
       triggerElement: '.projects-section-one',
+      triggerHook: .7,
     }).setTween(timelineMaster.timelineA()),
     new ScrollMagic.Scene({
       reverse: false,
       triggerElement: '#project-wrapper-1',
+      triggerHook: .8,
     }).setTween(timelineMaster.timelineB()),
     new ScrollMagic.Scene({
       reverse: false,
       triggerElement: '#project-wrapper-2',
+      triggerHook: .8,
     }).setTween(timelineMaster.timelineC()),
     new ScrollMagic.Scene({
       reverse: false,
       triggerElement: '#project-wrapper-3',
+      triggerHook: .8,
     }).setTween(timelineMaster.timelineD()),
     new ScrollMagic.Scene({
       reverse: false,

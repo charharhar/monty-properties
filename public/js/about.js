@@ -82,7 +82,7 @@ const timelineMaster = {
       .add(tweenMedia(
         '#mediaC2 .media-overlay',
         '#mediaC2 .media'), 'labelC+=.4')
-      .fromTo('#mediaC3', .5, { autoAlpha: 0, marginTop: 100 }, { autoAlpha: 1, marginTop: 0 })
+      .fromTo('#mediaC3', .5, { autoAlpha: 0, marginTop: 100 }, { autoAlpha: 1, marginTop: 0 }, 'labelC+=.8')
 
     return timeline;
   },
@@ -132,14 +132,17 @@ window.addEventListener('load', function(e) {
     new ScrollMagic.Scene({
       reverse: false,
       triggerElement: '.about-section-one',
+      triggerHook: .7,
     }).setTween(timelineMaster.timelineA()),
     new ScrollMagic.Scene({
       reverse: false,
       triggerElement: '.about-section-two',
+      triggerHook: .7,
     }).setTween(timelineMaster.timelineB()),
     new ScrollMagic.Scene({
       reverse: false,
       triggerElement: '.about-section-three',
+      triggerHook: .7,
     }).setTween(timelineMaster.timelineC()),
     new ScrollMagic.Scene({
       reverse: false,

@@ -32,7 +32,7 @@ function handleHeaderSideways() {
 
   const sidewaysHeight = responsiveWidth <= 576
     ? window.innerHeight - heroHeight
-    : headerHeight - navHeight - (headerHeight * .07);
+    : headerHeight - (navHeight + 100) - (headerHeight * .15);
   const sidewaysRight = responsiveWidth <= 768
     ? 'auto'
     : `${document.querySelector('.navigation-list-wrapper ul').getBoundingClientRect().right - 15}px`;
@@ -221,26 +221,32 @@ window.addEventListener('load', function(e) {
     new ScrollMagic.Scene({
       reverse: false,
       triggerElement: '.home-section-one',
+      triggerHook: .7,
     }).setTween(timelineMaster.timelineA()),
     new ScrollMagic.Scene({
       reverse: false,
       triggerElement: '.home-section-two',
+      triggerHook: .7,
     }).setTween(timelineMaster.timelineB()),
     new ScrollMagic.Scene({
       reverse: false,
       triggerElement: '.home-section-three',
+      triggerHook: .7,
     }).setTween(timelineMaster.timelineC()),
     new ScrollMagic.Scene({
       reverse: false,
       triggerElement: '.home-section-four',
+      triggerHook: .7,
     }).setTween(timelineMaster.timelineD()),
     new ScrollMagic.Scene({
       reverse: false,
       triggerElement: '.home-section-header',
+      triggerHook: .7,
     }).setTween(timelineMaster.timelineL()),
     new ScrollMagic.Scene({
       reverse: false,
       triggerElement: '.home-section-four',
+      triggerHook: .7,
     }).setTween(timelineMaster.timelineF()),
 
     new ScrollMagic.Scene({

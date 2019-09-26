@@ -48,9 +48,10 @@
     div.carousel-wrapper {
       &#about-context-carousel {
         position: absolute;
-        top: 0;
+        top: 50%;
         left: 0;
         width: 100%;
+        transform: translateY(-50%);
       }
 
       .carousel-slide {
@@ -83,10 +84,6 @@
           }
         }
 
-        figure.aspect-image {
-          transition: transform 8000ms ease;
-        }
-
         &.active {
           opacity: 1;
 
@@ -116,6 +113,37 @@
 
   .sideways-scrollhint {
     display: none;
+  }
+}
+@media (max-width: 991px) {
+  .wrapper {
+    section.section {
+      .section-content {
+        .content-wrapper.content-fill-100 .overlap-content {
+          width: 45%;
+        }
+      }
+
+      div.carousel-wrapper {
+        .carousel-slide {
+          .carousel-context {
+            span {
+              &.context-number {
+                font-size: 80px;
+              }
+
+              &.context-header {
+                margin-bottom: 10px;
+              }
+
+              &.context-body {
+                font-size: 15px;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 
@@ -152,7 +180,7 @@
               width: 90%;
 
               &:before {
-                padding-top: 140%;
+                padding-top: 40%;
               }
             }
           }
@@ -166,6 +194,32 @@
 
     .sideways-scrollhint#footer-sideways {
       display: flex;
+    }
+
+    footer.section-footer {
+      padding-top: 160px;
+    }
+  }
+}
+
+@media (max-width: 414px) {
+  .wrapper {
+    .section-content {
+      .content-wrapper {
+        &.content-fill-100.overlap-container {
+          display: block;
+
+          .overlap-content {
+            &:before {
+              padding-top: 120%;
+            }
+          }
+        }
+      }
+    }
+
+    footer.section-footer {
+      padding-top: 40px;
     }
   }
 }
