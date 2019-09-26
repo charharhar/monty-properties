@@ -43,6 +43,23 @@ const timelineMaster = {
     return timeline;
   },
 
+  timelineShowcase: function() {
+    const {
+      helpers: {
+        tweenText,
+        tweenMedia,
+        tweenAnchor,
+        newTimeline,
+      }
+    } = timelineMaster;
+    const timeline = new TimelineMax();
+
+    timeline
+      .add(tweenText('#textShowcase'), 'labelShowcase')
+
+    return timeline;
+  },
+
   timelineB: function() {
     const {
       helpers: {
@@ -196,6 +213,11 @@ modalControl.forEach(node => {
 
 window.addEventListener('load', function(e) {
   controller.addScene([
+    new ScrollMagic.Scene({
+      reverse: false,
+      triggerElement: '.projects-showcase',
+      triggerHook: .7,
+    }).setTween(timelineMaster.timelineShowcase()),
     new ScrollMagic.Scene({
       reverse: false,
       triggerElement: '.projects-section-one',

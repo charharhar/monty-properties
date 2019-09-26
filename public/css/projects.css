@@ -36,9 +36,7 @@
       .projects-intro {
         padding: 0 30px;
 
-        h2 {
-          font-weight: 600;
-          font-size: 30px;
+        span.body-header {
           color: #777;
         }
       }
@@ -166,6 +164,7 @@
               position: relative;
               width: 100%;
               overflow: hidden;
+              max-height: 550px;
             }
 
             .carousel-more-modal {
