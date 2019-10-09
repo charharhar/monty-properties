@@ -724,6 +724,7 @@ img {
     .monty-link-text {
       position: relative;
       color: #fff;
+      white-space: nowrap;
 
       &:after {
         content: '';

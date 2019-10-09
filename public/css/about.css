@@ -204,14 +204,16 @@
 
 @media (max-width: 414px) {
   .wrapper {
-    .section-content {
-      .content-wrapper {
-        &.content-fill-100.overlap-container {
-          display: block;
+    section.section {
+      .section-content {
+        .content-wrapper {
+          &.content-fill-100.overlap-container {
+            display: block;
 
-          .overlap-content {
-            &:before {
-              padding-top: 120%;
+            .overlap-content {
+              &:before {
+                padding-top: 120%;
+              }
             }
           }
         }
