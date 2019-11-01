@@ -215,7 +215,7 @@ window.addEventListener('load', function(e) {
   controller.addScene([
     new ScrollMagic.Scene({
       reverse: false,
-      triggerElement: '.projects-showcase',
+      triggerElement: '#textShowcase',
       triggerHook: .7,
     }).setTween(timelineMaster.timelineShowcase()),
     new ScrollMagic.Scene({

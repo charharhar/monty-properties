@@ -203,6 +203,24 @@
           }
         }
       }
+
+      .other-projects-wrapper {
+        display: flex;
+        padding: 0 30px;
+        width: 100%;
+        margin: 0 auto;
+        flex-flow: row wrap;
+
+        .other-project {
+          flex: 0 0 25%;
+          padding: 0 15px 60px;
+
+          .other-project-header {
+            font-weight: 600;
+            margin: 20px 0 5px;
+          }
+        }
+      }
     }
   }
 
@@ -246,6 +264,15 @@
 
       &.projects-section-two {
         padding: 40px 0;
+
+        .other-projects-wrapper {
+          padding: 0 30px;
+
+          .other-project {
+            flex: 0 0 50%;
+            padding: 0 15px 60px;
+          }
+        }
       }
     }
 
@@ -389,6 +416,15 @@
             }
           }
 
+        }
+
+        .other-projects-wrapper {
+          padding: 0;
+
+          .other-project {
+            flex: 0 0 100%;
+            padding: 0 15px 60px;
+          }
         }
       }
     }
