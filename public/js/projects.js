@@ -105,7 +105,6 @@ const timelineMaster = {
     const timeline = new TimelineMax();
 
     timeline
-      timeline
       .add([
         tweenText('#textC1 .project-title .body-text'),
         tweenText('#textC1 .project-location .body-text'),
@@ -139,7 +138,6 @@ const timelineMaster = {
     const timeline = new TimelineMax();
 
     timeline
-      timeline
       .add([
         tweenText('#textD1 .project-title .body-text'),
         tweenText('#textD1 .project-location .body-text'),
@@ -159,6 +157,20 @@ const timelineMaster = {
         '#anchorD4 .monty-link-underline'), 'labelD+=.8', 'sequence')
 
     return timeline;
+  },
+
+  timelineOther: function() {
+    const timeline = new TimelineMax();
+
+    const otherProjects = sliceArray(document.querySelectorAll('.other-project'))
+    const otherProjectTweens = otherProjects.map(project => {
+      const projectId = project.getAttribute('id')
+      return TweenMax.fromTo(`#${projectId}`, .6, { y: 100, autoAlpha: 0 }, { y: 0, autoAlpha: 1 })
+    })
+
+    timeline.add(otherProjectTweens);
+
+    return timeline
   },
 
   timelineCTA: function() {
@@ -247,7 +259,12 @@ window.addEventListener('load', function(e) {
     new ScrollMagic.Scene({
       triggerElement: '#project-wrapper-3',
       reverse: true,
-    }).setClassToggle('.main-navigation', 'sticky')
+    }).setClassToggle('.main-navigation', 'sticky'),
+
+    new ScrollMagic.Scene({
+      reverse: false,
+      triggerElement: '.other-projects-wrapper',
+    }).setTween(timelineMaster.timelineOther())
   ])
 
   carouselInitWrappers.forEach(node => {
