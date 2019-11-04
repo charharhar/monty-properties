@@ -202,7 +202,7 @@
   }
 }
 
-@media (max-width: 414px) {
+@media (max-width: 600px) {
   .wrapper {
     section.section {
       .section-content {
@@ -222,6 +222,26 @@
 
     footer.section-footer {
       padding-top: 40px;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    section.section {
+      .section-content {
+        .content-wrapper {
+          &.content-fill-100.overlap-container {
+            display: block;
+
+            .overlap-content {
+              &:before {
+                padding-top: 160%;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
