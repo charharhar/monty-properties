@@ -31,17 +31,12 @@
           }
         }
       }
-    }
 
-    span.body-content.mobile-address{
-      display: none;
+      span.body-content.contact-address {
+        margin-bottom: 40px;
 
-      span.body-text {
-        color: $monty-blue;
-        font-weight: bold;
-
-        &:first-child {
-          margin-bottom: 15px;
+        span.body-text {
+          color: $monty-blue;
         }
       }
     }
@@ -63,11 +58,11 @@
         }
 
         span.body-content {
-          &.mobile-address{
+          &.contact-address {
             display: block;
           }
 
-          &.mobile-address,
+          &.contact-address,
           &.large-spacing,
           &.medium-spacing {
             margin-bottom: 40px;
@@ -75,10 +70,6 @@
 
           &.heading-content {
             margin-bottom: 10px;
-          }
-
-          .mobile-hide {
-            display: none;
           }
         }
       }
