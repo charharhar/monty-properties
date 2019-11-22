@@ -20,7 +20,7 @@
 
           .overlap-content {
             position: absolute;
-            width: 40%;
+            width: 43%;
             background-color: $monty-blue;
             z-index: 1;
             top: 50%;
@@ -115,7 +115,8 @@
     display: none;
   }
 }
-@media (max-width: 991px) {
+
+@media (max-width: 1024px) {
   .wrapper {
     section.section {
       .section-content {
@@ -180,7 +181,7 @@
               width: 90%;
 
               &:before {
-                padding-top: 40%;
+                padding-top: 45%;
               }
             }
           }
